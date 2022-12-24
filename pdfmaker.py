@@ -28,7 +28,7 @@ gap = 10
 y = 50
 
 # Keep track of the current name
-current_name = None
+current_name = "first empty page (deal wih it)"
 
 # Iterate through the image files
 for image_file in image_files:
@@ -37,11 +37,16 @@ for image_file in image_files:
   
   # Check if the name has changed
   if name != current_name:
+    c.drawString(0, 10, " ".join(current_name.split("+")))
     # Update the current name
     current_name = name
     
     # Reset the y coordinate
     y = 50
+    
+    # Create a new page
+
+    c.showPage()
 
     
  
@@ -75,15 +80,7 @@ for image_file in image_files:
   # Add the name to the bottom of the page
   
   
-  if y + image_height > page_height:
-    c.drawString(0, 10, " ".join(name.split("+")))
-    # Create a new page
-
-    c.showPage()
-    
-    
-    # Reset the y coordinate
-    y = 0
+ 
 
 # Save the PDF to disk
 c.save()
