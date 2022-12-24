@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Photo</title>
+  </head>
+  <body>
+    <!-- Display the photo in an img element -->
+    <img id="photo" src="" alt="Random Photo" width="500" height="500" style="border: 5px solid black;">
+
+    <!-- Button to change the photo -->
+    <button onclick="changePhoto()" id="changebutton">click to change image</button>
+    <button onclick="learn()" id="learnbutton">do not show again</button>
+
+    <!-- Element to display the name of the photo -->
+    <p id="photo-name" style="font-size: 50px;"></p>
+    <p id="info" style="font-size: 25px;"></p>
+    <p id="learned-list" style="font-size: 20px;"></p>
+   
+
+   
+
+    <!-- JavaScript to handle the photo changing -->
+    <script>
+      // Set the directory containing the photos
+      const directory = './imgs';
+
+      //info:
+      var clicks = 0;
+      var numLearned = 0;
+      var all = 0;
+      var timespent = 0;
+
+      function tick() {
+        document.getElementById("info").innerHTML = `time spent: ${timespent} seconds; learned/tolearn/sum: ${numLearned}/${all-numLearned}/${all}; number of photos shown: ${clicks}; learned:`
+        timespent += 1
+      }
+
+      setInterval(tick, 1000);
+
+      // Array to store the names of the photos
+      var photos = [];
+
+      var change = true;
+
+      // Function to change the photo
+      function changePhoto() {
+        if(change){
+          clicks += 1
+
+          // hide the name
+          const nameElement = document.getElementById('photo-name');
+          nameElement.style.display = 'none';
+
+          //change the text on the button
+          document.getElementById("changebutton").innerHTML = "click to show name"
+
+          // Select a random photo from the array
+          const index = Math.floor(Math.random() * photos.length);
+          const photo = photos[index];
+
+          // Update the src attribute of the img element
+          const imgElement = document.getElementById('photo');
+          imgElement.src = `${directory}/${photo}`;
+
+          // Update the name of the photo
+
+          nameElement.innerHTML = photo.split("_")[0].split("+").join(" ");
+
+
+          change = false;
+        }else{
+          document.getElementById("changebutton").innerHTML = "click to change image"
+          const nameElement = document.getElementById('photo-name');
+          nameElement.style.display = 'block';
+
+          change = true;
+        }
+          
+      }
+
+      function learn(){
+        
+        learnedName = document.getElementById('photo-name').innerHTML.split(" ").join("+");
+        if(learned.includes(learnedName)){
+          return;
+        }
+        numLearned += 1
+        learned.push(learnedName)
+        document.getElementById("learned-list").innerHTML = learned.join(", ").split("+").join(" ")
+        for(let i = 0; i < photos.length; i++){
+          name = photos[i].split("_")[0]
+          if(name == learnedName){
+            photos.splice(i,1)
+          }
+          
+
+
+
+        }
+      }
+
+      
+
+      // Fetch the list of photos from the server
+      
+          // Store the list of photos
+          possible = ["afroditka_Aphrodita+aculeata_1d4.jpeg", "afroditka_Aphrodita+aculeata_2f0.jpeg", "afroditka_Aphrodita+aculeata_39b.jpeg", "afroditka_Aphrodita+aculeata_c2.jpeg", "afroditka_Aphrodita+aculeata_d0.jpeg", "argonaut+pelagicky_Argonauta+argo_1b.jpeg", "argonaut+pelagicky_Argonauta+argo_21d.jpeg", "argonaut+pelagicky_Argonauta+argo_220.jpeg", "argonaut+pelagicky_Argonauta+argo_3ac.jpeg", "argonaut+pelagicky_Argonauta+argo_3e4.jpeg", "bachorec_ (1).jpg", "bachorec_ (2).jpg", "bachorec_1aa.jpeg", "bahenka+zivoroda_11e.jpeg", "bahenka+zivoroda_144.jpeg", "bahenka+zivoroda_154.jpeg", "bahenka+zivoroda_1c7.jpeg", "bahenka+zivoroda_2ae.jpeg", "bahnatka+mala_23b.jpeg", "bahnatka+mala_267.jpeg", "bahnatka+mala_2ff.jpeg", "bahnatka+mala_314.jpeg", "bahnatka+mala_3ad.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_162.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_1a.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_1b9.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_209.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_26b.jpeg", "bobovka+prvok_1d1.jpeg", "bobovka+prvok_2cf.jpeg", "bobovka+prvok_2f4.jpeg", "bobovka+prvok_cc.jpeg", "chobotnatka_Theromyzon+tessulatum_171.jpeg", "chobotnatka_Theromyzon+tessulatum_182.jpeg", "chobotnatka_Theromyzon+tessulatum_1d3.jpeg", "chobotnatka_Theromyzon+tessulatum_1ef.jpeg", "chobotnatka_Theromyzon+tessulatum_22b.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_144.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_155.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_19e.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_255.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_296.jpeg", "ctyrhranka_183.jpeg", "ctyrhranka_1d7.jpeg", "ctyrhranka_1ea.jpeg", "ctyrhranka_206.jpeg", "ctyrhranka_233.jpeg", "hlemyzď+zahradni_1b9.jpeg", "hlemyzď+zahradni_1fa.jpeg", "hlemyzď+zahradni_227.jpeg", "hlemyzď+zahradni_26a.jpeg", "hlemyzď+zahradni_2d5.jpeg", "homolice_10c.jpeg", "homolice_131.jpeg", "homolice_168.jpeg", "homolice_17.jpeg", "homolice_1f7.jpeg", "houba+domeckova_Suberites+domuncula_111.jpeg", "houba+domeckova_Suberites+domuncula_1d6.jpeg", "houba+domeckova_Suberites+domuncula_2d0.jpeg", "houba+domeckova_Suberites+domuncula_2f.jpeg", "houba+domeckova_Suberites+domuncula_316.jpeg", "houba+myci_10f.jpeg", "houba+myci_128.jpeg", "houba+myci_170.jpeg", "houba+myci_1b2.jpeg", "houba+myci_23e.jpeg", "houba+pletena_1a.jpeg", "houba+pletena_23c.jpeg", "houba+pletena_7a.jpeg", "houba+pletena_Hexactinellida_16a.jpeg", "houba+pletena_Hexactinellida_22.jpeg", "houba+poharova_155.jpeg", "houba+poharova_247.jpeg", "houba+poharova_288.jpeg", "houba+poharova_2cd.jpeg", "houba+poharova_2e0.jpeg", "houba+rybnicna_154.jpeg", "houba+rybnicna_169.jpeg", "houba+rybnicna_18c.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_112.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_127.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_1e.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_22d.jpg", "houba+vostinata_Sycon+raphanus+Schmidt_273.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_176.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_1b1.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_1e.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_22c.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_26e.jpeg", "kerenka_18b.jpeg", "koral+cerveny_21.jpeg", "koral+cerveny_233.jpeg", "koral+cerveny_286.jpeg", "koral+cerveny_3ac.jpeg", "koral+cerveny_6d.jpeg", "korenoustka_176.jpeg", "korenoustka_17c.jpeg", "korenoustka_1c0.jpeg", "korenoustka_20.jpeg", "korenoustka_342.jpeg", "krakatice_137.jpeg", "krakatice_144.jpeg", "krakatice_183.jpeg", "krakatice_22a.jpeg", "krakatice_25.jpeg", "krasnoocko+prvok_103.jpeg", "krasnoocko+prvok_197.jpeg", "krevnicka+mocova_13a.jpeg", "krevnicka+mocova_143.jpeg", "krevnicka+mocova_1bf.jpeg", "krevnicka+mocova_334.jpeg", "krevnicka+mocova_37b.jpeg", "lamblie+strevni_Giardia+intestinalis_13d.jpeg", "lamblie+strevni_Giardia+intestinalis_15d.jpeg", "lamblie+strevni_Giardia+intestinalis_1a1.jpeg", "lamblie+strevni_Giardia+intestinalis_1d6.jpeg", "lamblie+strevni_Giardia+intestinalis_290.jpeg", "lodenka+hlubinna_11f.jpeg", "lodenka+hlubinna_155.jpeg", "lodenka+hlubinna_1d1.png", "lodenka+hlubinna_22c.jpeg", "lodenka+hlubinna_29e.jpeg", "mechyrovka+portugalska_180.jpeg", "mechyrovka+portugalska_195.jpeg", "mechyrovka+portugalska_1d6.jpeg", "mechyrovka+portugalska_24f.jpeg", "mechyrovka+portugalska_2bd.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_17c.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_20c.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_233.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_32f.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_35a.jpeg", "medviďatko_114.jpeg", "medviďatko_12c.jpeg", "medviďatko_1e5.jpeg", "medviďatko_1fe.jpeg", "medviďatko_28.jpeg", "meňavka_Amoebozoa_12f.jpeg", "meňavka_Amoebozoa_18.jpeg", "meňavka_Amoebozoa_1c6.jpeg", "meňavka_Amoebozoa_1dc.jpeg", "meňavka_Amoebozoa_1ec.jpeg", "motolice+jaterni_Fasciola+hepatica+Linne_21.jpeg", "mrizovci_10b.jpeg", "mrizovci_cf.jpeg", "mrizovci_Radiozoa_157.jpeg", "mrizovci_Radiozoa_1fc.jpeg", "mrizovci_Radiozoa_216.jpeg", "mrskavka_Stentor_174.jpeg", "mrskavka_Stentor_1c3.jpeg", "mrskavka_Stentor_27.jpeg", "mrskavka_Stentor_284.jpeg", "mrskavka_Stentor_2af.jpeg", "nereidka_19b.jpeg", "nereidka_1a9.jpeg", "nereidka_1d8.jpeg", "nereidka_2a3.jpeg", "nereidka_2bb.jpeg", "nezmar_Hydra+oligactis_144.jpeg", "nezmar_Hydra+oligactis_20d.jpeg", "nezmar_Hydra+oligactis_23a.jpeg", "nezmar_Hydra+oligactis_244.jpeg", "nezmar_Hydra+oligactis_28e.jpeg", "nitenka_Naididae_1e5.jpeg", "nitenka_Naididae_30b.jpeg", "nitenka_Naididae_351.jpeg", "nitenka_Naididae_b7.jpeg", "obrnenka+(Peridinium)+prvok_372.jpeg", "obrnenka+(Peridinium)+prvok_396.jpeg", "okruzak+plosky_Planorbarius+corneus_112.jpeg", "okruzak+plosky_Planorbarius+corneus_129.jpeg", "okruzak+plosky_Planorbarius+corneus_242.jpeg", "okruzak+plosky_Planorbarius+corneus_69.jpeg", "okruzak+plosky_Planorbarius+corneus_ee.jpeg", "ostranka_Bolinus+brandaris_16e.jpeg", "ostranka_Bolinus+brandaris_2c3.jpeg", "ostranka_Bolinus+brandaris_382.jpeg", "ostranka_Bolinus+brandaris_3b8.jpeg", "ostranka_Bolinus+brandaris_de.jpeg", "palolo_17e.jpeg", "palolo_1c0.jpeg", "palolo_1d5.jpeg", "palolo_200.jpeg", "palolo_21.jpeg", "paskovka_152.jpeg", "paskovka_1f5.jpeg", "paskovka_207.jpeg", "paskovka_222.jpeg", "paskovka_318.jpeg", "pasovnice+Venusina_19e.jpeg", "pasovnice+Venusina_21d.jpeg", "pasovnice+Venusina_334.jpeg", "perlorodka+ricni_18d.jpeg", "perlorodka+ricni_1d3.jpeg", "perlorodka+ricni_1eb.jpeg", "perlorodka+ricni_205.jpeg", "perlorodka+ricni_2c9.jpeg", "perlotvorka+morska_22c.jpeg", "perlotvorka+morska_2f8.jpeg", "perlotvorka+morska_30f.jpeg", "perlotvorka+morska_3cd.jpeg", "perlotvorka+morska_3d9.jpeg", "perovnik_25b.jpeg", "perovnik_9f.jpeg", "pijavka_114.jpeg", "pijavka_151.jpeg", "pijavka_18b.jpeg", "pijavka_1ab.jpeg", "pijavka_21d.jpeg", "plostenka+potocni_Dugesia+gonocephala_279.jpeg", "plostenka+potocni_Dugesia+gonocephala_2b.jpeg", "plovatka+bahenni_11c.jpeg", "plovatka+bahenni_125.jpeg", "plovatka+bahenni_145.jpeg", "plovatka+bahenni_1a1.jpeg", "plovatka+bahenni_2a7.jpeg", "plzak_136.jpeg", "plzak_163.jpeg", "plzak_290.jpeg", "plzak_2e0.jpeg", "plzak_342.jpeg", "roup+detsky_Enterobius+vermicularis_243.jpeg", "roup+detsky_Enterobius+vermicularis_366.jpeg", "roup+detsky_Enterobius+vermicularis_76.jpeg", "roup+detsky_Enterobius+vermicularis_84.jpeg", "rozlitka_Difflugia+oblonga_11f.jpeg", "rozlitka_Difflugia+oblonga_13f.jpeg", "rozlitka_Difflugia+oblonga_221.jpeg", "rozlitka_Difflugia+oblonga_31b.jpeg", "rozlitka_Difflugia+oblonga_390.jpeg", "sasanka+koňska_Actinia+equina_107.jpeg", "sasanka+koňska_Actinia+equina_159.jpeg", "sasanka+koňska_Actinia+equina_1dd.jpeg", "sasanka+koňska_Actinia+equina_259.jpeg", "sasanka+koňska_Actinia+equina_2e2.jpeg", "sepie_125.jpeg", "sepie_17.jpeg", "sepie_1ae.jpeg", "sepie_33b.jpeg", "sepie_38e.jpeg", "skeble+rybnicna_13d.jpeg", "skeble+rybnicna_1b2.jpeg", "skeble+rybnicna_1fc.jpeg", "skeble+rybnicna_2d4.jpeg", "skeble+rybnicna_30d.jpeg", "skrkavka+detska_Ascaris+lumbricoides_120.jpeg", "skrkavka+detska_Ascaris+lumbricoides_21a.jpeg", "skrkavka+detska_Ascaris+lumbricoides_244.jpeg", "skrkavka+detska_Ascaris+lumbricoides_294.jpeg", "skrkavka+detska_Ascaris+lumbricoides_2ce.jpeg", "skulovec+siroky_Daaasdf.jpg", "skulovec+siroky_Dibothriocephalus+latus_19c.jpeg", "skulovec+siroky_Dibothriocephalus+latus_2dd.jpeg", "skulovec+siroky_Dibothriocephalus+latus_348.jpeg", "slavinka_11d.jpeg", "slavka+jedla_1cc.jpeg", "slavka+jedla_20f.jpeg", "slavka+jedla_26e.jpeg", "slavka+jedla_29c.jpeg", "slavka+jedla_2da.jpeg", "slimak_132.jpeg", "slimak_194.jpeg", "slimak_1ef.jpeg", "slimak_2b0.jpeg", "slimak_2e3.jpeg", "slizovka+vlci+mleko_107.jpeg", "slizovka+vlci+mleko_20b.jpeg", "slizovka+vlci+mleko_23e.jpeg", "slunivka+prvok_Actinosphaerium_132.jpeg", "slunivka+prvok_Actinosphaerium_224.jpeg", "slunivka+prvok_Actinosphaerium_3.jpeg", "slunivka+prvok_Actinosphaerium_321.jpeg", "slunivka+prvok_Actinosphaerium_359.jpeg", "srdcovka+jedla_113.jpeg", "srdcovka+jedla_270.jpeg", "srdcovka+jedla_2ab.jpeg", "srdcovka+jedla_2b1.jpeg", "srdcovka+jedla_2e.jpeg", "svalovec+stoceny_Trichinella+spiralis_14f.jpeg", "svalovec+stoceny_Trichinella+spiralis_15e.jpeg", "svalovec+stoceny_Trichinella+spiralis_19b.jpeg", "svalovec+stoceny_Trichinella+spiralis_1bb.jpeg", "svalovec+stoceny_Trichinella+spiralis_1f4.jpeg", "talirovka_19b.jpeg", "talirovka_1e2.jpeg", "talirovka_21b.jpeg", "talirovka_2e2.jpeg", "talirovka_30c.jpeg", "tasemnice_1dc.jpeg", "tasemnice_24a.jpeg", "tasemnice_24c.jpeg", "tasemnice_33a.jpeg", "tasemnice_c1.jpeg", "trepka+velka_Paramecium+caudatum_196.jpeg", "trepka+velka_Paramecium+caudatum_2ff.jpeg", "trepka+velka_Paramecium+caudatum_312.jpeg", "trepka+velka_Paramecium+caudatum_35b.jpeg", "trepka+velka_Paramecium+caudatum_8c.jpeg", "tritónka_3aa.jpeg", "tritónka_4e.jpeg", "trojrozec_1 - Copy.jpeg", "trojrozec_1.jpeg", "trypanozóma+prvok_trypanosoma_1ae.jpeg", "trypanozóma+prvok_trypanosoma_29c.jpeg", "trypanozóma+prvok_trypanosoma_306.jpeg", "trypanozóma+prvok_trypanosoma_3aa.jpeg", "trypanozóma+prvok_trypanosoma_3dc.jpeg", "ustrice+jedla_17.jpeg", "ustrice+jedla_1f4.jpeg", "ustrice+jedla_22a.jpeg", "ustrice+jedla_270.jpeg", "ustrice+jedla_34f.jpeg", "Vetevnik+mozkovy_ (1).jpeg", "Vetevnik+mozkovy_ (2).jpeg", "Vetevnik+mozkovy_ (3).jpeg", "Vetevnik+mozkovy_ (4).jpeg", "Vetevnik+mozkovy_ (5).jpeg", "virenka_Vorticella_109.jpeg", "virenka_Vorticella_1d8.jpeg", "virenka_Vorticella_1ed.jpeg", "virenka_Vorticella_392.jpeg", "virenka_Vorticella_39f.jpeg", "virnik_137.jpeg", "virnik_139.jpeg", "virnik_1cb.jpeg", "virnik_289.jpeg", "virnik_376.jpeg", "vlasovec_10b.jpeg", "vlasovec_195.jpeg", "vlasovec_229.jpeg", "vlasovec_262.jpeg", "vlasovec_2d7.jpeg", "zabrohlist_32d.jpeg", "zabrohlist_3a6.jpeg", "zavinutec_23.jpeg", "zavinutec_285.jpeg", "zavinutec_2b4.jpeg", "zavinutec_2d1.jpeg", "zavinutec_2f6.jpeg", "zebrovka+vejcita_1d8.jpeg", "zebrovka+vejcita_213.jpeg", "zebrovka+vejcita_261.jpeg", "zebrovka+vejcita_31e.jpeg", "zej+obrovsky_135.jpeg", "zej+obrovsky_167.jpeg", "zej+obrovsky_17.jpeg", "zej+obrovsky_319.jpeg", "zej+obrovsky_391.jpeg", "zeva+obrovska_120.jpeg", "zeva+obrovska_136.jpeg", "zeva+obrovska_1a9.jpeg", "zeva+obrovska_1b7.jpeg", "zeva+obrovska_220.jpeg", "zizala_18.jpeg", "zizala_1b8.jpeg", "zizala_23e.jpeg", "zizala_269.jpeg", "zizala_2d5.jpeg"];
+          learned = []
+          all = 81;
+          toShow = possible
+          photos = toShow
+          // Display the first photo
+          changePhoto();
+
+          
+        
+    </script>
+  </body>
+</html>
