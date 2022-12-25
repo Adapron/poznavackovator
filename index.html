@@ -4,18 +4,81 @@
     <title>Random Photo</title>
   </head>
   <body>
-    <!-- Display the photo in an img element -->
-    <img id="photo" src="" alt="Random Photo" width="500" height="500" style="border: 5px solid black;">
+    <!-- HTML for the UI -->
+    <div id="ui">
+      <img src="image.jpg" alt="Random Photo" width="809" height="500" style="border: 5px solid black;" id="photo">
+      <div id="buttonContainer">
+        <button onclick="changePhoto()" id="changebutton" >click to change image</button>
+        <button onclick="learn()" id="learnbutton" >do not show again</button>
+      </div>
+      
+      <div id = "nameDiv" >
+        <a id="photo-name" style="font-size: 50px;" width = "561px" ></a>
+      </div>
+      <p id="info" style="font-size: 25px;"></p>
+    
+      <div id="list-container" style="border: 5px solid black;">
+        <p id="learned-list" style="font-size: 25px;"></p>
+      </div>
+    </div>
 
-    <!-- Button to change the photo -->
-    <button onclick="changePhoto()" id="changebutton">click to change image</button>
-    <button onclick="learn()" id="learnbutton">do not show again</button>
+    <!-- CSS for styling the UI -->
+    <style>
+      #ui {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #list-container {
+        overflow-y: scroll;
+        height: 200px;
+        width: 809px;
+      }
+      #button-container {
+        display: flex;
+        justify-content: space-between;
+        height: 50px;
+      }
+      #changebutton{
+        height: 50px;
+        width: 400px;
+        font-size: 35px;
+      }
+      #learnbutton{
+        height: 50px;
+        width: 400px;
+        font-size: 35px;
+      }
+      #nameDiv{
+        width: 813px;
+        height: 70px;
+        border: 3px;
+        border-color: black;
+        border-style: solid;
+        text-align: center;
+      }
+    </style>
 
-    <!-- Element to display the name of the photo -->
-    <p id="photo-name" style="font-size: 50px;"></p>
-    <p id="info" style="font-size: 25px;"></p>
-    <p id="learned-list" style="font-size: 20px;"></p>
-    <a href="https://drive.google.com/file/d/14kSJP2WFHfn_Z_jOhGHc85cFunXMHzsQ/view?usp=share_link">Click here to open pdf with all the images</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
    
 
    
@@ -40,31 +103,65 @@
 
       // Array to store the names of the photos
       var photos = [];
+      var photonames = [];
 
       var change = true;
 
       // Function to change the photo
       function changePhoto() {
         if(change){
+
+          if(photonames.length == 0){
+            document.getElementById('photo-name').innerHTML = "all done"
+            return;
+          }
+
+
           clicks += 1
 
           // hide the name
           const nameElement = document.getElementById('photo-name');
-          nameElement.style.display = 'none';
+          nameElement.style.visibility = 'hidden';
 
           //change the text on the button
           document.getElementById("changebutton").innerHTML = "click to show name"
 
+
+          var actual = []
+          var desired = photonames[Math.floor(Math.random()*photonames.length)]
+
+          photos.forEach(x => {
+            if(x.split("_")[0] == desired){
+              actual.push(x);
+            }
+          });
+
+          var photo = actual[Math.floor(Math.random()*actual.length)]
+
+
+
+
+
           // Select a random photo from the array
-          const index = Math.floor(Math.random() * photos.length);
-          const photo = photos[index];
+          
+
+
+
+
+
+
+
+
 
           // Update the src attribute of the img element
           const imgElement = document.getElementById('photo');
           imgElement.src = `${directory}/${photo}`;
 
-          // Update the name of the photo
 
+
+
+
+          // Update the name of the photo
           nameElement.innerHTML = photo.split("_")[0].split("+").join(" ");
 
 
@@ -72,7 +169,7 @@
         }else{
           document.getElementById("changebutton").innerHTML = "click to change image"
           const nameElement = document.getElementById('photo-name');
-          nameElement.style.display = 'block';
+          nameElement.style.visibility = 'visible';
 
           change = true;
         }
@@ -88,16 +185,7 @@
         numLearned += 1
         learned.push(learnedName)
         document.getElementById("learned-list").innerHTML = learned.join(", ").split("+").join(" ")
-        for(let i = 0; i < photos.length; i++){
-          name = photos[i].split("_")[0]
-          if(name == learnedName){
-            photos.splice(i,1)
-          }
-          
-
-
-
-        }
+        photonames = photonames.filter(element => element !== learnedName);
       }
 
       
@@ -109,6 +197,14 @@
           learned = []
           all = 81;
           toShow = possible
+          possible.forEach(thing => {
+            thingname = thing.split("_")[0]
+            if (!photonames.includes(thingname))
+            {
+              photonames.push(thingname);
+            }
+          });
+          console.log(photonames)
           photos = toShow
           // Display the first photo
           changePhoto();
