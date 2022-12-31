@@ -1,73 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Poznávačka</title>
-  </head>
-  <body>
-    <!-- HTML for the UI -->
-    <div id="ui">
-      <div id="title">Poznávačkovátor</div>
-      <div id = "space"></div>
-      <img src="image.jpg" alt="Random Photo" width="809" height="500" style="border: 5px solid black;" id="photo">
-      <div id = "space"></div>
-      <div id="buttonContainer">
-        <button onclick="changePhoto()" id="changebutton" >click to change image</button>
-        <button onclick="learn()" id="learnbutton" >do not show again</button>
-      </div>
-      <div id = "space"></div>
-      <div id = "nameDiv" >
-        <a id="photo-name" style="font-size: 50px;" width = "561px" ></a>
-      </div>
-      <p id="info" style="font-size: 25px;"></p>
+<head>
+  <title>Random Image Search</title>
+</head>
+<body>
+
+
+
+
+  <div id="ui">
+
+    <div id="title">Poznávačkovátor 2.0</div>
+    <select id="dropdown">
+      <option value="option1">1-Řasy, houby, výtrusné, nahosemenné, kulturní rostliny</option>
+      <option value="option2">2-Krytosemenné rostliny</option>
+      <option value="option3" selected>3-Prvoci, houbovci, žahavci, ploštěnci, hlístice, měkkýši, kroužkovci</option>
+      <option value="option3">4-Členovci</option>
+      <option value="option3">5-Ostnokožci, polostrunatci, pláštěnci, bezlebeční, kruhoústí, paryby, ryby</option>
+      <option value="option3">6-Obojživelníci, plazi</option>
+      <option value="option3">7-Ptáci</option>
+      <option value="option3">8-Savci</option>
+      <option value="option3">9-Krytosemenné rostliny</option>
+
+    </select>
+    <a href="old/index.html">old poznavackovator</a>
     
-      <div id="list-container" style="border: 5px solid black;">
-        <p id="learned-list" style="font-size: 25px;"></p>
-      </div>
-      <a href="https://drive.google.com/file/d/14kSJP2WFHfn_Z_jOhGHc85cFunXMHzsQ/view?usp=share_link">pdf se vším</a>
+    <div id = "space"></div>
+
+
+    <img src="image.jpg" alt="Random Photo" width="809" height="500" style="border: 5px solid black;" id="photo">
+    
+    
+    
+    <div id = "space"></div>
+    <div id="buttonContainer">
+      <button onclick="changePhoto()" id="changebutton" >click to change image</button>
+      <button onclick="learn()" id="learnbutton" >do not show again</button>
     </div>
+    <div id = "space"></div>
+    <div id = "nameDiv" >
+      <a id="photo-name" style="font-size: 50px;" width = "561px" ></a>
+    </div>
+    <p id="info" style="font-size: 25px;"></p>
+  
+    <div id="list-container" style="border: 5px solid black;">
+      <p id="learned-list" style="font-size: 25px;"></p>
+    </div>
+    <button onclick="ex()" id="export" >export</button>
 
-    <!-- CSS for styling the UI -->
-    <style>
-      #space{
-        height: 25px;
-      }
-      #title{
-        font-size: 50px;
-      }
-      #ui {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      #list-container {
-        overflow-y: scroll;
-        height: 200px;
-        width: 809px;
-      }
-      #button-container {
-        display: flex;
-        justify-content: space-between;
-        height: 50px;
-      }
-      #changebutton{
-        height: 50px;
-        width: 400px;
-        font-size: 35px;
-      }
-      #learnbutton{
-        height: 50px;
-        width: 400px;
-        font-size: 35px;
-      }
-      #nameDiv{
-        width: 813px;
-        height: 70px;
-        border: 3px;
-        border-color: black;
-        border-style: solid;
-        text-align: center;
-      }
-    </style>
+    <div id="exportHere">
+
+    </div>
+  </div>
+
+  <!-- CSS for styling the UI -->
+  <style>
+    #space{
+      height: 25px;
+    }
+    #title{
+      font-size: 50px;
+    }
+    #dropdown{
+      font-size: 20px;
+    }
+    #ui {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #list-container {
+      overflow-y: scroll;
+      height: 200px;
+      width: 809px;
+    }
+    #button-container {
+      display: flex;
+      justify-content: space-between;
+      height: 50px;
+    }
+    #changebutton{
+      height: 50px;
+      width: 400px;
+      font-size: 35px;
+    }
+    #learnbutton{
+      height: 50px;
+      width: 400px;
+      font-size: 35px;
+    }
+    #nameDiv{
+      width: 813px;
+      height: 70px;
+      border: 3px;
+      border-color: black;
+      border-style: solid;
+      text-align: center;
+    }
+    #imageName{
+      text-align: center;
+      font-size: 40px;
+    }
+    #exportHere{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #exportSpacing{
+      height: 200px;
+    }
+  </style>
 
 
 
@@ -85,99 +127,178 @@
 
 
 
+  <script>
+   
+  var pzndata=
+  [
+    [
+      ["člunovka","bokovka","bobulák","chaluha bublinatá","hroznovice","potěrka žabí símě","Porphyra","rosolenka","pláštěnka","váleč","zrněnka","šroubatka","jařmatka","řetízovka","parožnatka","porost locikový","žabí vlas","štětíčkovec","plíseň hlavičková","hlízenka","paličkovice nachová","smrž","lanýž","kuřátka","liška","choroš","hřib dubový","hřib satan","kozák","klouzek","křemenáč","holubinka","ryzec","hlíva ústřičná","václavka","žampion","bedla","muchomůrka zelená","muchomůrka červená","hadovka smrdutá","pýchavka","pestřec","dutohlávka","mapovník","provazovka","terčovka","porostnice mnohotvárná","ploník","rašeliník","dvouhrotec","bělomech","měřík","zkrutek","plavuň vidlačka","přeslička rolní","přeslička lesní","přeslička obrovská","kapraď samec","sleziník","jelení jazyk","osladič","žebrovice","hasivka orličí","pérovník","cykas","jinan dvoulaločný","borovice","kosodřevina","smrk ztepilý","modřín","jedle bělokorá","jalovec","cypřišek","zerav","tis","cedr","sekvoj","špenát setý","řepa obecná","brukev zelná","kedluben","květák","zelí","kapusta","ředkev","křen","řepka olejka","len setý","tykev","jahodník","ostružiník","růže","třešeň","slivoň","meruňka","broskvoň","jabloň","hrušeň","hrách","fazol","čočka","sója","podzemnice","mrkev","petržel","miřík celer","kopr","kmín","lilek brambor","paprika","rajče","tabák","locika salát","citroník","fíkovník","aktinidie","olivovník","čajovník","kávovník","kakaovník","cibule kuchyňská","česnek","pšenice","žito","ječmen","oves","rýže","kukuřice","banánovník","ananasovník","datlovník","kokosovník"],                               //1-Řasy, houby, výtrusné, nahosemenné, kulturní rostliny - vyšší gymnázium.pdf1-Řasy, houby, výtrusné, nahosemenné, kulturní rostliny - vyšší gymnázium.pdf
+      ["bez černý","břečťan popínavý","brusnice borůvka","brusinka obecná","bříza","buk","líska","platan","olše","lípa","réva vinná","dub","habr","hloh","chmel","jasan","javor","jeřáb","jírovec","jmelí","topol","trnka","vrba","vřes","ořešák královský","blatouch bahenní","sasanka hajní","koniklec","pryskyřník prudký","orsej jarní","hlaváček jarní","leknín bílý","mák vlčí","vlaštovičník větší","koukol polní","kohoutek luční","hvozdík","ptačinec","lebeda","šťovík","rdesno","kopřiva","violka vonná","penízek rolní","vavřín","kokoška pastuší tobolka","třezalka","česnáček lékařský","rosnatka okrouhlolistá","pryšec chvojka","mochna","krvavec toten","kontryhel obecný","vlčí bob mnoholistý (lupina)","jetel","vikev","hrachor","netýkavka nedůtklivá","kakost","šťavel","bršlice kozí noha","bolševník obecný","prvosenka","hořec","barvínek menší (brčál)","svízel přítula","svlačec rolní","pomněnka","plicník lékařský","kostival lékařský","lilek černý","rulík zlomocný","divizna","rozrazil rezekvítek","náprstník velkokvětý","podbílek šupinatý","jitrocel","zběhovec plazivý","popenec břečťanolistý","hluchavka nachová","pitulník žlutý","šalvěj","mateřídouška","máta","zvonek","čekanka","pampeliška","zlatobýl (celík)","sedmikráska","hvězdnice","pěťour maloúborný","rmen rolní","řebříček obecný","heřmánek","vratič","kopretina bílá","pelyněk","podběl","devětsil","lopuch","pcháč rolní","pupava bezlodyžná","chrpa polní","česnek medvědí","ocún jesenní","lilie zlatohlavá","konvalinka vonná","vraní oko čtyřlisté","sněženka podsněžník","bledule jarní","střevíčník pantoflíček","kosatec žlutý","vstavač","sítina rozkladitá","lipnice roční","srha laločnatá","pýr plazivý","bojínek luční","rákos obecný","orobinec","puškvorec","okřehek","tulipán","trnovník akát"],                               //2-Krytosemenné rostliny - vyšší gymnázium.pdf2-Krytosemenné rostliny - vyšší gymnázium.pdf
+      ["krásnoočko","trojrožec (rohatka)","obrněnka (Peridinium)","trypanozóma","bičenka poševní","lamblie střevní","měňavka","rozlitka","mřížovci","slunivka","slizovka vlčí mléko","bachořec","trepka velká","vířenka","keřenka","mrskavka","slávinka","bobovka","houba voštinatá","houba mycí","houba pohárová","houba domečková","houba pletená","houba rybničná","nezmar","medúzka sladkovodní","měchýřovka portugalská","talířovka","kořenoústka","čtyřhranka","korál červený","pérovník","větévník mozkový","sasanka koňská","žebrovka vejčitá","pásovnice Venušina","ploštěnka potoční","škulovec široký","tasemnice","motolice jaterní","krevnička močová","žábrohlíst","vířník","škrkavka dětská","roup dětský","vlasovec","svalovec stočený","bahenka živorodá","homolice","ostranka","zej obrovský","plovatka bahenní","bahnatka malá","okružák ploský","hlemýžď zahradní","plzák","slimák","páskovka","tritónka","zavinutec","perlotvorka mořská","hřebenatka jakubská","ústřice jedlá","srdcovka jedlá","slávka jedlá","škeble rybničná","perlorodka říční","zéva obrovská","loděnka hlubinná","chobotnice pobřežní","argonaut pelagický","krakatice","sépie","nereidka","palolo","afroditka","žížala","nitěnka","chobotnatka","pijavka","medvíďátko"],                               //3-Prvoci, houbovci, žahavci, ploštěnci, hlístice, měkkýši, kroužkovci - vyšší gymnázium.pdf3-Prvoci, houbovci, žahavci, ploštěnci, hlístice, měkkýši, kroužkovci - vyšší gymnázium.pdf
+      ["trilobit","ostrorep","štír","snovačka jedovatá","sklípkan","křižák","pokoutník","skákavky","vodouch","slíďák","běžník","sekáč obecný","štírek obecný","čmelík","klíště","trudník","zákožka","listonoh","žábronožka","hrotnatka (perloočka)","kapřivec","buchanka","vznášivka","kreveta","langusta","humr","rak říční","poustevník","krab","beruška vodní","stínka","blešivec","stonožka","mnohonožka","svinule","rybenka","jepice","šídlo","vážka","šváb","kudlanka","všekaz","škvor","kobylka","cvrček","saranče","krtonožka","veš","cikáda","vlnatka","mšice","znakoplavka","vodoměrka","štěnice","ruměnice","kněžice","splešťule","zlatoočka","mravkolev","chrostík","pakobylka","bourec morušový","lišaj smrtihlav","babočka paví oko","babočka admirál","otakárek","bělásek","žluťásek","mol","píďalka","obaleč","tiplice","komár","ovád","octomilka","moucha domácí","masařka","blecha","lumek","mravenec","vosa","sršeň","včela","čmelák","střevlík","potápník","hrobařík","světluška","slunéčko sedmitečné","majka","vodomil","chroust","chrobák","roháč","kovařík","červotoč","potemník","mandelinka","tesařík","nosatec","lýkožrout","páteříček","nosorožík","vruboun"],                               //4-Členovci - vyšší gymnázium.pdf4-Členovci - vyšší gymnázium.pdf
+      ["lilijice","sumýš","ježovka","hvězdice","hadice","žaludovec","sumka","salpa","vršenka","kopinatec","mihule","sliznatka","žralok bílý","žralok kladivoun","žralok velký","máčka","rejnok","parejnok elektrický","piloun","chiméra","manta","trnucha","bahník","latimérie","kostlín","kaproun","jeseter","bichir nilský","sleď","sardinka","losos","pstruh obecný","pstruh duhový","lipan","štika","piraňa","plotice","amur","lín","cejn","skalára","karas obecný","karas zlatý","neonka","kapr","tolstolobik","piskoř","mřenka","sumec velký","sumeček","treska","mník","ďas mořský","muréna","úhoř mořský","úhoř říční","letoun","jehlice","paví očko","mečovka","koníček mořský","řasovník","okoun","candát","ježdík","lezec","vranka","makrela","tuňák","koljuška","rájovec","bojovnice","ropušnice","platýs","havýš","měsíčník","soltýn barakuda","arapaima","parma","mečoun","hořavka"],                               //5-Ostnokožci, polostrunatci, pláštěnci, bezlebeční, kruhoústí, paryby, ryby - vyšší gymnázium.pdf5-Ostnokožci, polostrunatci, pláštěnci, bezlebeční, kruhoústí, paryby, ryby - vyšší gymnázium.pdf
+      ["mlok skvrnitý","velemlok japonský","žebrovník","axolotl","čolek","macarát jeskynní","červoř","pipa americká","drápatka vodní","kuňka žlutobřichá","kuňka obecná","blatnice","ropucha obecná","ropucha zelená","ropucha krátkonohá","rosnička","skokan hnědý","skokan zelený","létavka šíronohá","pralesničky (Dendrobates)","želva bahenní","želva sloní","želva nádherná","želva žlutohnědá","kareta","kožatka","kožnatka","matamata","kajmanka","krokodýl nilský","aligátor","kajman","gaviál","hatérie","gekon","agama límcová","moloch","dráček létavý","leguán zelený","bazilišek","scink","krátkonožka","varan","korovec","ještěrka obecná","ještěrka zelená","slepýš křehký","chameleón","hroznýš","anakonda velká","krajta","užovka obojková","užovka červená","užovka stromová","vejcožrout","korálovec","kobra","mamba černá","zmije obecná","zmije růžkatá","chřestýš","ploskolebec","vodnář","křovinář","taipan"],                               //6-Obojživelníci, plazi - vyšší gymnázium.pdf6-Obojživelníci, plazi - vyšší gymnázium.pdf
+      ["albatros","alka malá","amazoňan","andulka","ara","bažant obecný","bažant zlatý","bělokur","brhlík","brkoslav","čáp bílý","čáp černý","čáp marabu","čejka","červenka","čírka","datel","dlask","drop","drozd","dudek","emu","hadilov písař","havran","holub","hrdlička","husa","hýl","ibis","jeřáb popelavý","jestřáb","jiřička","kachna","kachnička mandarínská","kakadu","kalous","kanár","káně lesní","káně rousná","kasuár","kavka","kiwi","kolibřík","kolpík","kondor","konipas","korela","kormorán","koroptev","kos","krkavec","krocan","křepelka","křivka","kukačka obecná","kukačka kohoutí","kulíšek","kur","kvakoš","labuť","ledňáček","lelek","lyska","mandelík","moudivláček","nandu","orel mořský","orel skalní","papoušek šedý","papuchalk","páv","pelikán","pěnkava","perlička","plameňák","poštolka","potápka roháč","potáplice","pštros","puštík","racek","rákosník","raroh","rehek","rorýs","rybák","skorec","skřivan","slavík","slípka zelenonohá","sojka","sokol","sova","sovice","stehlík","straka","strakapoud","strnad","sup","sýček","sýkora babka","sýkora koňadra","sýkora modřinka","sýkora parukářka","sýkora úhelníček","špaček","tetřev","tetřívek","tučňák","tukan","ťuhýk","vlaštovka","vlha","volavka","vrabec","vrána","výr","zvonek","žluna","žluva"],                               //7-Ptáci - vyšší gymnázium.pdf7-Ptáci - vyšší gymnázium.pdf
+      ["antilopa losí","běluha","bizon","bobr","buvol","činčila","daman","daněk","delfín","dikobraz","ďábel medvědovitý","fenek","gazela","gepard","gibon","gorila","hrabáč","hraboš","hroch","hrošík","hyena","chápan","irbis","jaguár","jelen","jezevec","ježek","ježura","kaloň","kamzík","kapustňák","kapybara","keporkak","klokan","koala","kočka","kočkodan","kosatka","kosman","koza","králík","krtek","křeček","křečíkdžungarský","kůň","kuna","lachtan","lama","lasice","lemur","lenochod","letucha","lev","levhart (pardál)","liška","los","luskoun","mandril","makak","malpa","mara","medojed","medvěd hnědý","medvěd lední","morče","mravenečník","mrož","muflon","myš","mýval","nártoun","narval","netopýr","norek","nosorožec","nutrie","okapi","ondatra","orangutan","osel","outloň","ovce","pakůň","panda červená","panda velká","pásovec","pavián","pes","pískomil","pižmoň","plejtvák","plch","potkan","prase","psík mývalovitý","ptakopysk","puma","rejsec","rejsek","rys","sajga","serval","skunk","slon africký","slon indický","sob","srnec","surikata","svišť","sysel","šakal","šimpanz","tamarín","tana","tapír","tchoř","tuleň","tur","tygr","vačice","velbloud","velryba","veverka","vidloroh","vlk","vombat","vorvaň","vrápenec","vřešťan","vydra","zajíc","zebra","zubr","žirafa"],                               //8-Savci - vyšší gymnázium.pdf8-Savci - vyšší gymnázium.pdf
+      ["pryskyřník prudký","orsej jarní","blatouch bahenní","koniklec luční","čemeřice černá","orlíček obecný","oměj šalamounek","hlaváček jarní","plamének (klematis)","upolín evropský","lakušník vodní","sasanka hajní","sasanka pryskyřníkovitá","jaterník podléška","jabloň domácí","hrušeň obecná","třešeň ptačí (obecná)","slivoň slíva (obecná)","slivoň švestka","broskvoň obecná","meruňka obecná","ostružiník křovitý (obecný)","ostružiník maliník","růže šípková","jeřáb ptačí","kuklík městský","kontryhel obecný","krvavec toten","mochna husí","tavolník","hloh obecný","trnka obecná","vlčí bob mnoholistý (lupina mnoholistá)","hrachor jarní (hrachor lecha)","jetel luční","jete plazivý","štírovník růžkatý","vojtěška setá","vikev ptačí","janovec metlatý","trnovník akát","štědřenec odvislý","podzemnice olejná","cizrna beraní","čočka jedlá","hrách setý","fazol obecný","sója luštinatá","řeřišnice luční","česnáček lékařský","kokoška pastuší tobolka","penízek rolní","ředkev ohnice (ohnice polní, ohnice obecná)","brukev řepka olejka","ředkev bílá","ředkev setá","křen selský","brukev zelná kapusta","brukev zelná kedluben","brukev zelná květák","brukev zelná brokolice","brukev zelná kapusta růžičková","brukev zelná","bedrník obecný","bršlice kozí noha","krabilice zápašná","děhel lesní","bolševník velkolepý","bolehlav plamatý","máčka ladní","kmín kořenný","mrkev setá","petržel zahradní","miřík celer","libeček lékařský","pastinák setý","kopr vonný","hluchavka nachová","hluchavka bílá","hluchavka pitulník","šalvěj lékařská","popenec obecný (břečťanolistý, břečťanovitý)","zběhovec plazivý","mateřídouška obecná","máta peprná","majoránka zahradní","meduňka lékařská","bazalka pravá","černohlávek obecný","rozmarýna lékařská","čistec lesní","pomněnka lesní","kostival lékařský","plicník lékařský","hadinec obecný","smetánka lékařská","kopretina bílá","sedmikráska chudobka","podběl lékařský","pupava bezlodyžná","chrpa polní","slunečnice roční","zlatobýl obecný (celík zlatobýl)","řebříček obecný","heřmánek pravý","heřmánek terčovitý","vratič obecný","rmen rolní","pcháč oset","slunečnice topinambur","pelyněk černobýl","lopuch větší","čekanka obecná","jestřábník chlupáček (chlupáček zední)","hvězdnice chlumní","pěťour maloúborný","devětsil lékařský","devětsil bílý","locika salát","gerbera","astra","chryzantéma","aksamitník","bříza bělokorá","olše lepkavá","ořešák královský","líska obecná","habr obecný","dub zimní","dub letní","dub korkový","kaštanovník setý","buk lesní","lilie zlatohlavá (zlatohlávek)","ocún jesenní","česnek medvědí","vraní oko čtyřlisté","cibule česnek","cibule kuchyňská","česnek pór","česnek pažitka","konvalinka vonná","kokořík mnohokvětý","pstroček dvoulistý","modřenec","křivatec žlutý","šafrán jarní","narcis žlutý","tulipán","bledule jarní","hyacint východní","sněženka podsněžník","kosatec žlutý","banánovník","mečík bahenní","agáve","lipnice luční","srha laločnatá (srha říznačka)","bojínek luční","psárka luční","pýr plazivý","tomka vonná","žito seté","pšenice setá","ječmen setý","oves setý","ovsík vyvýšený","rákos obecný","bambus","kostřava červená","kukuřice setá","rýže setá","cukrová třtina","proso seté","šácholan","leknín bílý","stulík žlutý","viktorie královská","mák vlčí","mák setý","vlaštovičník větší","divizna velkokvětá","rozrazil rezekvítek","náprstník velkokvětý","lnice květel","lilek černý","lilek brambor","lilek rajče","lilek jedlý","blín černý","paprika setá (paprika roční)","rulík zlomocný","tabák virginský","kopřiva dvoudomá","kopřiva žahavka","konopí seté","chmel otáčivý","merlík bílý","lebeda lesklá","řepa cukrovka","řepa krmná","řepa červená","špenát setý","tykev dýně (turek)","okurka setá","meloun vodní","tykev obecná cuketa","sléz lesní","ibišek čínský","bavlník chlupatý","javor klen","javor mléč","lípa srdčitá","jutovník","vrba jíva","topol černý","vstavač májový","vstavač vojenský","střevíčník pantoflíček","orchidej","hlístník hnízdák","vanilovník","datlovník pravý","palma olejná","kokosovník ořechoplodý"]                                //9-Krytosemenné rostliny - vyšší gymnázium-seminář.pdf9-Krytosemenné rostliny - vyšší gymnázium-seminář.pdf
+    ],
+    [ //latin
+      ["člunovka","bokovka","bobulák","chaluha bublinatá","hroznovice","potěrka žabí símě","Porphyra","rosolenka","pláštěnka","váleč","zrněnka","šroubatka","jařmatka","řetízovka","parožnatka","porost locikový","žabí vlas","štětíčkovec","plíseň hlavičková","hlízenka","paličkovice nachová","smrž","lanýž","kuřátka","liška","choroš","hřib dubový","hřib satan","kozák","klouzek","křemenáč","holubinka","ryzec","hlíva ústřičná","václavka","žampion","bedla","muchomůrka zelená","muchomůrka červená","hadovka smrdutá","pýchavka","pestřec","dutohlávka","mapovník","provazovka","terčovka","porostnice mnohotvárná","ploník","rašeliník","dvouhrotec","bělomech","měřík","zkrutek","plavuň vidlačka","přeslička rolní","přeslička lesní","přeslička obrovská","kapraď samec","sleziník","jelení jazyk","osladič","žebrovice","hasivka orličí","pérovník","cykas","jinan dvoulaločný","borovice","kosodřevina","smrk ztepilý","modřín","jedle bělokorá","jalovec","cypřišek","zerav","tis","cedr","sekvoj","špenát setý","řepa obecná","brukev zelná","kedluben","květák","zelí","kapusta","ředkev","křen","řepka olejka","len setý","tykev","jahodník","ostružiník","růže","třešeň","slivoň","meruňka","broskvoň","jabloň","hrušeň","hrách","fazol","čočka","sója","podzemnice","mrkev","petržel","miřík celer","kopr","kmín","lilek brambor","paprika","rajče","tabák","locika salát","citroník","fíkovník","aktinidie","olivovník","čajovník","kávovník","kakaovník","cibule kuchyňská","česnek","pšenice","žito","ječmen","oves","rýže","kukuřice","banánovník","ananasovník","datlovník","kokosovník"],
+      ["bez černý","břečťan popínavý","brusnice borůvka","brusinka obecná","bříza","buk","líska","platan","olše","lípa","réva vinná","dub","habr","hloh","chmel","jasan","javor","jeřáb","jírovec","jmelí","topol","trnka","vrba","vřes","ořešák královský","blatouch bahenní","sasanka hajní","koniklec","pryskyřník prudký","orsej jarní","hlaváček jarní","leknín bílý","mák vlčí","vlaštovičník větší","koukol polní","kohoutek luční","hvozdík","ptačinec","lebeda","šťovík","rdesno","kopřiva","violka vonná","penízek rolní","vavřín","kokoška pastuší tobolka","třezalka","česnáček lékařský","rosnatka okrouhlolistá","pryšec chvojka","mochna","krvavec toten","kontryhel obecný","vlčí bob mnoholistý (lupina)","jetel","vikev","hrachor","netýkavka nedůtklivá","kakost","šťavel","bršlice kozí noha","bolševník obecný","prvosenka","hořec","barvínek menší (brčál)","svízel přítula","svlačec rolní","pomněnka","plicník lékařský","kostival lékařský","lilek černý","rulík zlomocný","divizna","rozrazil rezekvítek","náprstník velkokvětý","podbílek šupinatý","jitrocel","zběhovec plazivý","popenec břečťanolistý","hluchavka nachová","pitulník žlutý","šalvěj","mateřídouška","máta","zvonek","čekanka","pampeliška","zlatobýl (celík)","sedmikráska","hvězdnice","pěťour maloúborný","rmen rolní","řebříček obecný","heřmánek","vratič","kopretina bílá","pelyněk","podběl","devětsil","lopuch","pcháč rolní","pupava bezlodyžná","chrpa polní","česnek medvědí","ocún jesenní","lilie zlatohlavá","konvalinka vonná","vraní oko čtyřlisté","sněženka podsněžník","bledule jarní","střevíčník pantoflíček","kosatec žlutý","vstavač","sítina rozkladitá","lipnice roční","srha laločnatá","pýr plazivý","bojínek luční","rákos obecný","orobinec","puškvorec","okřehek","tulipán","trnovník akát"],
+      ["Euglena","ceratium","Peridinium","Trypanosoma","Trichomonas vaginalis","Giardia intestinalis","ameba","difflugia","Radiozoa","Actinopoda","Fuligo septica" ,"Entodiniomorphida","Paramecium caudatum","vorticella","Carchesium","Stentor","Stylonychia mytilus","colpidium","sycon raphanus","Spongia officinalis","Cliona patera","Suberites domuncula","Euplectella aspergillum","Spongilla lacustris","Hydra vulgaris","Craspedacusta sowerbii","Physalia physalis","cyanea capillata","Rhizostoma","Cubozoa","Corallium rubrum","Ptilosarcus gurneyi","Diploria labyrinthiformis","Actinia equina","bolinopsis infundibulum","cestum veneris","Dugesia gonocephala","diphyllobothrium latum","Cestoda","fasciola hepatica","Schistosoma haematobium","Diplozoon paradoxum","Rotifera","Ascaris lumbricoides","Enterobius vermicularis","Dracunculus medinensis","Trichinella spiralis ","Viviparus contectus","Conus","Bolinus brandaris","Aplysia depilans","Lymnaea stagnalis","Galba truncatula","Planorbarius corneus","Helix pomatia","arion vulgaris","limax","Cepaea nemoralis","charonia tritonis","Cypraea tigris","Pinctada margaritifera","Pecten jacobaeus","Ostrea edulis","Cerastoderma edule","Mytilus edulis","Anodonta cygnea","Margaritifera margaritifera","Tridacna gigas","Nautilus pompilius","Octopus vulgaris","Argonauta argo","Teuthida","Sepia","Nereis pelagica","palolo worm","Aphrodita aculeata","Lumbricina","tubifex tubifex","Piscicola geometra","Hirudinea","Tardigrada"],
+      ["trilobit","ostrorep","štír","snovačka jedovatá","sklípkan","křižák","pokoutník","skákavky","Argyroneta aquatica","slíďák","běžník","sekáč obecný","štírek obecný","Dermanyssus gallinae","klíště","Demodex brevis","zákožka","listonoh","žábronožka","hrotnatka (perloočka)","Branchiura","Cyclops strenuus","Calanoida","kreveta","langusta","humr","rak říční","Pagurus bernhardus","krab","beruška vodní","stínka","blešivec","stonožka","mnohonožka","svinule","rybenka","jepice","Anisoptera","vážka","šváb","kudlanka","Isoptera","škvor","kobylka","cvrček","saranče","krtonožka","Pediculus capitis","cikáda","vlnatka","mšice","znakoplavka","vodoměrka","štěnice","ruměnice","Halyomorpha halys","splešťule","zlatoočka","mravkolev","chrostík","pakobylka","bourec morušový","lišaj smrtihlav","babočka paví oko","babočka admirál","otakárek","bělásek","žluťásek","Tineidae","píďalka","obaleč","tiplice","komár","ovád","octomilka","moucha domácí","masařka","Siphonaptera","Rhyssa persuasoria","mravenec","Vespoidea","sršeň","včela","čmelák","střevlík","potápník","hrobařík","světluška","slunéčko sedmitečné","Meloe","vodomil","chroust","chrobák","roháč","Alaus oculatus","červotoč","potemník","mandelinka","tesařík","Curculionidae","lýkožrout","páteříček","nosorožík","vruboun"],
+      ["lilijice","sumýš","ježovka","hvězdice","hadice","žaludovec","sumka","salpa","vršenka","kopinatec","mihule","sliznatka","žralok bílý","žralok kladivoun","žralok velký","máčka","rejnok","parejnok elektrický","piloun","chiméra","manta","trnucha","bahník","latimérie","kostlín","kaproun","jeseter","bichir nilský","sleď","sardinka","losos","pstruh obecný","pstruh duhový","lipan","štika","piraňa","plotice","amur","lín","cejn","skalára","karas obecný","karas zlatý","neonka","kapr","tolstolobik","piskoř","mřenka","sumec velký","sumeček","treska","mník","ďas mořský","muréna","úhoř mořský","úhoř říční","letoun","jehlice","paví očko","mečovka","koníček mořský","řasovník","okoun","candát","ježdík","lezec","vranka","makrela","tuňák","koljuška","rájovec","bojovnice","ropušnice","platýs","havýš","měsíčník","soltýn barakuda","arapaima","parma","mečoun","hořavka"],
+      ["mlok skvrnitý","velemlok japonský","žebrovník","axolotl","čolek","macarát jeskynní","červoř","pipa americká","drápatka vodní","kuňka žlutobřichá","kuňka obecná","blatnice","ropucha obecná","ropucha zelená","ropucha krátkonohá","rosnička","skokan hnědý","skokan zelený","létavka šíronohá","pralesničky (Dendrobates)","želva bahenní","želva sloní","želva nádherná","želva žlutohnědá","kareta","kožatka","kožnatka","matamata","kajmanka","krokodýl nilský","aligátor","kajman","gaviál","hatérie","gekon","agama límcová","moloch","dráček létavý","leguán zelený","bazilišek","scink","krátkonožka","varan","korovec","ještěrka obecná","ještěrka zelená","slepýš křehký","chameleón","hroznýš","anakonda velká","krajta","užovka obojková","užovka červená","užovka stromová","vejcožrout","korálovec","kobra","mamba černá","zmije obecná","zmije růžkatá","chřestýš","ploskolebec","vodnář","křovinář","taipan"],
+      ["albatros","alka malá","amazoňan","andulka","ara","bažant obecný","bažant zlatý","bělokur","brhlík","brkoslav","čáp bílý","čáp černý","čáp marabu","čejka","červenka","čírka","datel","dlask","drop","drozd","dudek","emu","hadilov písař","havran","holub","hrdlička","husa","hýl","ibis","jeřáb popelavý","jestřáb","jiřička","kachna","kachnička mandarínská","kakadu","kalous","kanár","káně lesní","káně rousná","kasuár","kavka","kiwi","kolibřík","kolpík","kondor","konipas","korela","kormorán","koroptev","kos","krkavec","krocan","křepelka","křivka","kukačka obecná","kukačka kohoutí","kulíšek","kur","kvakoš","labuť","ledňáček","lelek","lyska","mandelík","moudivláček","nandu","orel mořský","orel skalní","papoušek šedý","papuchalk","páv","pelikán","pěnkava","perlička","plameňák","poštolka","potápka roháč","potáplice","pštros","puštík","racek","rákosník","raroh","rehek","rorýs","rybák","skorec","skřivan","slavík","slípka zelenonohá","sojka","sokol","sova","sovice","stehlík","straka","strakapoud","strnad","sup","sýček","sýkora babka","sýkora koňadra","sýkora modřinka","sýkora parukářka","sýkora úhelníček","špaček","tetřev","tetřívek","tučňák","tukan","ťuhýk","vlaštovka","vlha","volavka","vrabec","vrána","výr","zvonek","žluna","žluva"],
+      ["antilopa losí","běluha","bizon","bobr","buvol","činčila","daman","daněk","delfín","dikobraz","ďábel medvědovitý","fenek","gazela","gepard","gibon","gorila","hrabáč","hraboš","hroch","hrošík","hyena","chápan","irbis","jaguár","jelen","jezevec","ježek","ježura","kaloň","kamzík","kapustňák","kapybara","keporkak","klokan","koala","kočka","kočkodan","kosatka","kosman","koza","králík","krtek","křeček","křečíkdžungarský","kůň","kuna","lachtan","lama","lasice","lemur","lenochod","letucha","lev","levhart (pardál)","liška","los","luskoun","mandril","makak","malpa","mara","medojed","medvěd hnědý","medvěd lední","morče","mravenečník","mrož","muflon","myš","mýval","nártoun","narval","netopýr","norek","nosorožec","nutrie","okapi","ondatra","orangutan","osel","outloň","ovce","pakůň","panda červená","panda velká","pásovec","pavián","pes","pískomil","pižmoň","plejtvák","plch","potkan","prase","psík mývalovitý","ptakopysk","puma","rejsec","rejsek","rys","sajga","serval","skunk","slon africký","slon indický","sob","srnec","surikata","svišť","sysel","šakal","šimpanz","tamarín","tana","tapír","tchoř","tuleň","tur","tygr","vačice","velbloud","velryba","veverka","vidloroh","vlk","vombat","vorvaň","vrápenec","vřešťan","vydra","zajíc","zebra","zubr","žirafa"],
+      ["pryskyřník prudký","orsej jarní","blatouch bahenní","koniklec luční","čemeřice černá","orlíček obecný","oměj šalamounek","hlaváček jarní","plamének (klematis)","upolín evropský","lakušník vodní","sasanka hajní","sasanka pryskyřníkovitá","jaterník podléška","jabloň domácí","hrušeň obecná","třešeň ptačí (obecná)","slivoň slíva (obecná)","slivoň švestka","broskvoň obecná","meruňka obecná","ostružiník křovitý (obecný)","ostružiník maliník","růže šípková","jeřáb ptačí","kuklík městský","kontryhel obecný","krvavec toten","mochna husí","tavolník","hloh obecný","trnka obecná","vlčí bob mnoholistý (lupina mnoholistá)","hrachor jarní (hrachor lecha)","jetel luční","jete plazivý","štírovník růžkatý","vojtěška setá","vikev ptačí","janovec metlatý","trnovník akát","štědřenec odvislý","podzemnice olejná","cizrna beraní","čočka jedlá","hrách setý","fazol obecný","sója luštinatá","řeřišnice luční","česnáček lékařský","kokoška pastuší tobolka","penízek rolní","ředkev ohnice (ohnice polní, ohnice obecná)","brukev řepka olejka","ředkev bílá","ředkev setá","křen selský","brukev zelná kapusta","brukev zelná kedluben","brukev zelná květák","brukev zelná brokolice","brukev zelná kapusta růžičková","brukev zelná","bedrník obecný","bršlice kozí noha","krabilice zápašná","děhel lesní","bolševník velkolepý","bolehlav plamatý","máčka ladní","kmín kořenný","mrkev setá","petržel zahradní","miřík celer","libeček lékařský","pastinák setý","kopr vonný","hluchavka nachová","hluchavka bílá","hluchavka pitulník","šalvěj lékařská","popenec obecný (břečťanolistý, břečťanovitý)","zběhovec plazivý","mateřídouška obecná","máta peprná","majoránka zahradní","meduňka lékařská","bazalka pravá","černohlávek obecný","rozmarýna lékařská","čistec lesní","pomněnka lesní","kostival lékařský","plicník lékařský","hadinec obecný","smetánka lékařská","kopretina bílá","sedmikráska chudobka","podběl lékařský","pupava bezlodyžná","chrpa polní","slunečnice roční","zlatobýl obecný (celík zlatobýl)","řebříček obecný","heřmánek pravý","heřmánek terčovitý","vratič obecný","rmen rolní","pcháč oset","slunečnice topinambur","pelyněk černobýl","lopuch větší","čekanka obecná","jestřábník chlupáček (chlupáček zední)","hvězdnice chlumní","pěťour maloúborný","devětsil lékařský","devětsil bílý","locika salát","gerbera","astra","chryzantéma","aksamitník","bříza bělokorá","olše lepkavá","ořešák královský","líska obecná","habr obecný","dub zimní","dub letní","dub korkový","kaštanovník setý","buk lesní","lilie zlatohlavá (zlatohlávek)","ocún jesenní","česnek medvědí","vraní oko čtyřlisté","cibule česnek","cibule kuchyňská","česnek pór","česnek pažitka","konvalinka vonná","kokořík mnohokvětý","pstroček dvoulistý","modřenec","křivatec žlutý","šafrán jarní","narcis žlutý","tulipán","bledule jarní","hyacint východní","sněženka podsněžník","kosatec žlutý","banánovník","mečík bahenní","agáve","lipnice luční","srha laločnatá (srha říznačka)","bojínek luční","psárka luční","pýr plazivý","tomka vonná","žito seté","pšenice setá","ječmen setý","oves setý","ovsík vyvýšený","rákos obecný","bambus","kostřava červená","kukuřice setá","rýže setá","cukrová třtina","proso seté","šácholan","leknín bílý","stulík žlutý","viktorie královská","mák vlčí","mák setý","vlaštovičník větší","divizna velkokvětá","rozrazil rezekvítek","náprstník velkokvětý","lnice květel","lilek černý","lilek brambor","lilek rajče","lilek jedlý","blín černý","paprika setá (paprika roční)","rulík zlomocný","tabák virginský","kopřiva dvoudomá","kopřiva žahavka","konopí seté","chmel otáčivý","merlík bílý","lebeda lesklá","řepa cukrovka","řepa krmná","řepa červená","špenát setý","tykev dýně (turek)","okurka setá","meloun vodní","tykev obecná cuketa","sléz lesní","ibišek čínský","bavlník chlupatý","javor klen","javor mléč","lípa srdčitá","jutovník","vrba jíva","topol černý","vstavač májový","vstavač vojenský","střevíčník pantoflíček","orchidej","hlístník hnízdák","vanilovník","datlovník pravý","palma olejná","kokosovník ořechoplodý"]
+    ]
+  ]
 
 
+
+
+ 
+
+  var clicks = 0;
+  var numLearned = 0;
+  var all = 0;
+  var timespent = 0;
+  var change = true;
+  var learned = [];
+  var randomNumber = -1;
+
+
+
+
+
+  function setup(num){
+    clicks = 0;
+    numLearned = 0;
+  
+    timespent = 0;
+    change = true;
+    learned = [];
+    randomNumber = -1;
+    tick()
+    names = []
+    latin = []
+    nameArray = pzndata[0][num]
+    latinArray = pzndata[1][num]
+    for (let i = 0; i < nameArray.length; i++) {
+      names.push(nameArray[i])
+      latin.push(latinArray[i])      
+    }
+    all = nameArray.length;
+    
+  }
+
+  function randInt(min, max){
+    if(min>max){
+      throw("min is bigger than max (" + min + ">"+max+")")
+    }
+    return(Math.floor(Math.random()*(max-min)+min))
+  }
+
+  function search(term, imgElement, displayName) { //returns random link to a photo
+
+    if(imgElement != null){
+      imgElement.src = "loading.png"
+    }
 
     
-   
 
-   
+    start = Date.now()
 
-    <!-- JavaScript to handle the photo changing -->
-    <script>
-      // Set the directory containing the photos
-      const directory = './imgs';
+    maximages = 10
 
-      //info:
-      var clicks = 0;
-      var numLearned = 0;
-      var all = 0;
-      var timespent = 0;
+    const corsProxy = "https://cors-anywhere.herokuapp.com/"; // change this to your chosen CORS proxy
+    const link = "https://www.bing.com/images/search?q="+term.split(" ").join("+")+"&form=HDRSC2&first=1&cw=1183&ch=1739&tsc=ImageHoverTitle"
 
-      function tick() {
-        document.getElementById("info").innerHTML = `time spent: ${timespent} seconds; learned/tolearn/sum: ${numLearned}/${all-numLearned}/${all}; number of photos shown: ${clicks}; learned:`
-        timespent += 1
-      }
+    fetch(corsProxy + link)
+      .then(response => response.text())
+      .then(text => {
+        imgs = text.split("class=\"mimg\"")
+        possibles = []
 
-      setInterval(tick, 1000);
+        for (let i = 1; i < maximages+1; i++) {
+          const element = imgs[i];
+          src = element.split("\"")[7]
+          possibles.push(src)
+        }
 
-      // Array to store the names of the photos
-      var photos = [];
-      var photonames = [];
 
-      var change = true;
+        if(imgElement != null){
+          imgElement.src = possibles[randInt(0,maximages)]
+        }else{
+          //add the stuff to the page
 
-      // Function to change the photo
-      function changePhoto() {
+
+          imageContainer = document.createElement("div")
+          imageName = document.createElement("a")
+          exportSpacing = document.createElement("div")
+
+          imageContainer.id = "imageContainer"
+          imageName.id="imageName"
+          exportSpacing.id="exportSpacing"
+          imageName.innerHTML = displayName
+
+          possibles.forEach(element => {
+            addedImage = document.createElement("img")
+            addedImage.id = "addedImage"
+            addedImage.src = element
+            imageContainer.appendChild(addedImage)
+          });
+
+          document.getElementById("exportHere").appendChild(imageContainer)
+          document.getElementById("exportHere").appendChild(imageName)
+          document.getElementById("exportHere").appendChild(exportSpacing)
+
+        }
+        
+
+        console.log("diff: "+(Date.now()-start).toString())
+
+    });      
+  }
+
+  function changePhoto() {
+    tick()
         if(change){
 
-          if(photonames.length == 0){
+          if(names.length == 0){
             document.getElementById('photo-name').innerHTML = "all done"
             return;
           }
 
-
+          const nameElement = document.getElementById('photo-name');
+          const imgElement = document.getElementById('photo');
+          
           clicks += 1
 
-          // hide the name
-          const nameElement = document.getElementById('photo-name');
+          // hide the name          
           nameElement.style.visibility = 'hidden';
 
           //change the text on the button
           document.getElementById("changebutton").innerHTML = "click to show name"
 
-
-          var actual = []
-          var desired = photonames[Math.floor(Math.random()*photonames.length)]
-
-          photos.forEach(x => {
-            if(x.split("_")[0] == desired){
-              actual.push(x);
-            }
-          });
-
-          var photo = actual[Math.floor(Math.random()*actual.length)]
-
-
-
-
-
           // Select a random photo from the array
-          
-
-
-
-
-
-
-
-
+          randomNumber = randInt(0,names.length)
+          displayName = names[randomNumber]
+          latinName = latin[randomNumber]
 
           // Update the src attribute of the img element
-          const imgElement = document.getElementById('photo');
-          imgElement.src = `${directory}/${photo}`;
-
-
-
-
-
+          search(latinName,imgElement, displayName)
+          
           // Update the name of the photo
-          nameElement.innerHTML = photo.split("_")[0].split("+").join(" ");
-
+          nameElement.innerHTML = displayName;
 
           change = false;
+
         }else{
+
           document.getElementById("changebutton").innerHTML = "click to change image"
+
           const nameElement = document.getElementById('photo-name');
           nameElement.style.visibility = 'visible';
 
@@ -186,41 +307,70 @@
           
       }
 
-      function learn(){
-        
-        learnedName = document.getElementById('photo-name').innerHTML.split(" ").join("+");
-        if(learned.includes(learnedName)){
-          return;
-        }
-        numLearned += 1
-        learned.push(learnedName)
-        document.getElementById("learned-list").innerHTML = learned.join(", ").split("+").join(" ")
-        photonames = photonames.filter(element => element !== learnedName);
-      }
+  function learn() {
+    tick()
+    learnedName = names[randomNumber]
+    if(learned.includes(learnedName)){
+      return;
+    }
+    numLearned += 1
+    learned.push(learnedName)
+    document.getElementById("learned-list").innerHTML = learned.join(", ").split("+").join(" ")
+    names.splice(randomNumber,1)
+    latin.splice(randomNumber,1)
+
+    console.log(names)
+  }
+
+  function ex(){
+    for (let i = 0; i < nameArray.length; i++) {
+      search(latinArray[i],null,nameArray[i])
+    }
+  }
+
+  function tick(){
+    document.getElementById("info").innerHTML = `time spent: ${timespent} seconds; learned/tolearn/sum: ${numLearned}/${all-numLearned}/${all}; number of photos shown: ${clicks}; learned:`
+    
+  }
+
+  function time(){
+    timespent += 1
+    tick()
+  }
 
       
 
-      // Fetch the list of photos from the server
       
-          // Store the list of photos
-          possible = ["afroditka_Aphrodita+aculeata_1d4.jpeg", "afroditka_Aphrodita+aculeata_2f0.jpeg", "afroditka_Aphrodita+aculeata_39b.jpeg", "afroditka_Aphrodita+aculeata_c2.jpeg", "afroditka_Aphrodita+aculeata_d0.jpeg", "argonaut+pelagicky_Argonauta+argo_1b.jpeg", "argonaut+pelagicky_Argonauta+argo_21d.jpeg", "argonaut+pelagicky_Argonauta+argo_220.jpeg", "argonaut+pelagicky_Argonauta+argo_3ac.jpeg", "argonaut+pelagicky_Argonauta+argo_3e4.jpeg", "bachorec_ (1).jpg", "bachorec_ (2).jpg", "bachorec_1aa.jpeg", "bahenka+zivoroda_11e.jpeg", "bahenka+zivoroda_144.jpeg", "bahenka+zivoroda_154.jpeg", "bahenka+zivoroda_1c7.jpeg", "bahenka+zivoroda_2ae.jpeg", "bahnatka+mala_23b.jpeg", "bahnatka+mala_267.jpeg", "bahnatka+mala_2ff.jpeg", "bahnatka+mala_314.jpeg", "bahnatka+mala_3ad.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_162.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_1a.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_1b9.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_209.jpeg", "bicenka+posevni+prvok_Trichomonas+vaginalis_26b.jpeg", "bobovka+prvok_1d1.jpeg", "bobovka+prvok_2cf.jpeg", "bobovka+prvok_2f4.jpeg", "bobovka+prvok_cc.jpeg", "chobotnatka_Theromyzon+tessulatum_171.jpeg", "chobotnatka_Theromyzon+tessulatum_182.jpeg", "chobotnatka_Theromyzon+tessulatum_1d3.jpeg", "chobotnatka_Theromyzon+tessulatum_1ef.jpeg", "chobotnatka_Theromyzon+tessulatum_22b.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_144.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_155.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_19e.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_255.jpeg", "chobotnice+pobrezni_Octopus+vulgaris_296.jpeg", "ctyrhranka_183.jpeg", "ctyrhranka_1d7.jpeg", "ctyrhranka_1ea.jpeg", "ctyrhranka_206.jpeg", "ctyrhranka_233.jpeg", "hlemyzď+zahradni_1b9.jpeg", "hlemyzď+zahradni_1fa.jpeg", "hlemyzď+zahradni_227.jpeg", "hlemyzď+zahradni_26a.jpeg", "hlemyzď+zahradni_2d5.jpeg", "homolice_10c.jpeg", "homolice_131.jpeg", "homolice_168.jpeg", "homolice_17.jpeg", "homolice_1f7.jpeg", "houba+domeckova_Suberites+domuncula_111.jpeg", "houba+domeckova_Suberites+domuncula_1d6.jpeg", "houba+domeckova_Suberites+domuncula_2d0.jpeg", "houba+domeckova_Suberites+domuncula_2f.jpeg", "houba+domeckova_Suberites+domuncula_316.jpeg", "houba+myci_10f.jpeg", "houba+myci_128.jpeg", "houba+myci_170.jpeg", "houba+myci_1b2.jpeg", "houba+myci_23e.jpeg", "houba+pletena_1a.jpeg", "houba+pletena_23c.jpeg", "houba+pletena_7a.jpeg", "houba+pletena_Hexactinellida_16a.jpeg", "houba+pletena_Hexactinellida_22.jpeg", "houba+poharova_155.jpeg", "houba+poharova_247.jpeg", "houba+poharova_288.jpeg", "houba+poharova_2cd.jpeg", "houba+poharova_2e0.jpeg", "houba+rybnicna_154.jpeg", "houba+rybnicna_169.jpeg", "houba+rybnicna_18c.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_112.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_127.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_1e.jpeg", "houba+vostinata_Sycon+raphanus+Schmidt_22d.jpg", "houba+vostinata_Sycon+raphanus+Schmidt_273.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_176.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_1b1.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_1e.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_22c.jpeg", "hrebenatka+jakubska_Pecten+jacobaeus_26e.jpeg", "kerenka_18b.jpeg", "koral+cerveny_21.jpeg", "koral+cerveny_233.jpeg", "koral+cerveny_286.jpeg", "koral+cerveny_3ac.jpeg", "koral+cerveny_6d.jpeg", "korenoustka_176.jpeg", "korenoustka_17c.jpeg", "korenoustka_1c0.jpeg", "korenoustka_20.jpeg", "korenoustka_342.jpeg", "krakatice_137.jpeg", "krakatice_144.jpeg", "krakatice_183.jpeg", "krakatice_22a.jpeg", "krakatice_25.jpeg", "krasnoocko+prvok_103.jpeg", "krasnoocko+prvok_197.jpeg", "krevnicka+mocova_13a.jpeg", "krevnicka+mocova_143.jpeg", "krevnicka+mocova_1bf.jpeg", "krevnicka+mocova_334.jpeg", "krevnicka+mocova_37b.jpeg", "lamblie+strevni_Giardia+intestinalis_13d.jpeg", "lamblie+strevni_Giardia+intestinalis_15d.jpeg", "lamblie+strevni_Giardia+intestinalis_1a1.jpeg", "lamblie+strevni_Giardia+intestinalis_1d6.jpeg", "lamblie+strevni_Giardia+intestinalis_290.jpeg", "lodenka+hlubinna_11f.jpeg", "lodenka+hlubinna_155.jpeg", "lodenka+hlubinna_1d1.png", "lodenka+hlubinna_22c.jpeg", "lodenka+hlubinna_29e.jpeg", "mechyrovka+portugalska_180.jpeg", "mechyrovka+portugalska_195.jpeg", "mechyrovka+portugalska_1d6.jpeg", "mechyrovka+portugalska_24f.jpeg", "mechyrovka+portugalska_2bd.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_17c.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_20c.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_233.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_32f.jpeg", "meduzka+sladkovodni_Craspedacusta+sowerbii_35a.jpeg", "medviďatko_114.jpeg", "medviďatko_12c.jpeg", "medviďatko_1e5.jpeg", "medviďatko_1fe.jpeg", "medviďatko_28.jpeg", "meňavka_Amoebozoa_12f.jpeg", "meňavka_Amoebozoa_18.jpeg", "meňavka_Amoebozoa_1c6.jpeg", "meňavka_Amoebozoa_1dc.jpeg", "meňavka_Amoebozoa_1ec.jpeg", "motolice+jaterni_Fasciola+hepatica+Linne_21.jpeg", "mrizovci_10b.jpeg", "mrizovci_cf.jpeg", "mrizovci_Radiozoa_157.jpeg", "mrizovci_Radiozoa_1fc.jpeg", "mrizovci_Radiozoa_216.jpeg", "mrskavka_Stentor_174.jpeg", "mrskavka_Stentor_1c3.jpeg", "mrskavka_Stentor_27.jpeg", "mrskavka_Stentor_284.jpeg", "mrskavka_Stentor_2af.jpeg", "nereidka_19b.jpeg", "nereidka_1a9.jpeg", "nereidka_1d8.jpeg", "nereidka_2a3.jpeg", "nereidka_2bb.jpeg", "nezmar_Hydra+oligactis_144.jpeg", "nezmar_Hydra+oligactis_20d.jpeg", "nezmar_Hydra+oligactis_23a.jpeg", "nezmar_Hydra+oligactis_244.jpeg", "nezmar_Hydra+oligactis_28e.jpeg", "nitenka_Naididae_1e5.jpeg", "nitenka_Naididae_30b.jpeg", "nitenka_Naididae_351.jpeg", "nitenka_Naididae_b7.jpeg", "obrnenka+(Peridinium)+prvok_372.jpeg", "obrnenka+(Peridinium)+prvok_396.jpeg", "okruzak+plosky_Planorbarius+corneus_112.jpeg", "okruzak+plosky_Planorbarius+corneus_129.jpeg", "okruzak+plosky_Planorbarius+corneus_242.jpeg", "okruzak+plosky_Planorbarius+corneus_69.jpeg", "okruzak+plosky_Planorbarius+corneus_ee.jpeg", "ostranka_Bolinus+brandaris_16e.jpeg", "ostranka_Bolinus+brandaris_2c3.jpeg", "ostranka_Bolinus+brandaris_382.jpeg", "ostranka_Bolinus+brandaris_3b8.jpeg", "ostranka_Bolinus+brandaris_de.jpeg", "palolo_17e.jpeg", "palolo_1c0.jpeg", "palolo_1d5.jpeg", "palolo_200.jpeg", "palolo_21.jpeg", "paskovka_152.jpeg", "paskovka_1f5.jpeg", "paskovka_207.jpeg", "paskovka_222.jpeg", "paskovka_318.jpeg", "pasovnice+Venusina_19e.jpeg", "pasovnice+Venusina_21d.jpeg", "pasovnice+Venusina_334.jpeg", "perlorodka+ricni_18d.jpeg", "perlorodka+ricni_1d3.jpeg", "perlorodka+ricni_1eb.jpeg", "perlorodka+ricni_205.jpeg", "perlorodka+ricni_2c9.jpeg", "perlotvorka+morska_22c.jpeg", "perlotvorka+morska_2f8.jpeg", "perlotvorka+morska_30f.jpeg", "perlotvorka+morska_3cd.jpeg", "perlotvorka+morska_3d9.jpeg", "perovnik_25b.jpeg", "perovnik_9f.jpeg", "pijavka_114.jpeg", "pijavka_151.jpeg", "pijavka_18b.jpeg", "pijavka_1ab.jpeg", "pijavka_21d.jpeg", "plostenka+potocni_Dugesia+gonocephala_279.jpeg", "plostenka+potocni_Dugesia+gonocephala_2b.jpeg", "plovatka+bahenni_11c.jpeg", "plovatka+bahenni_125.jpeg", "plovatka+bahenni_145.jpeg", "plovatka+bahenni_1a1.jpeg", "plovatka+bahenni_2a7.jpeg", "plzak_136.jpeg", "plzak_163.jpeg", "plzak_290.jpeg", "plzak_2e0.jpeg", "plzak_342.jpeg", "roup+detsky_Enterobius+vermicularis_243.jpeg", "roup+detsky_Enterobius+vermicularis_366.jpeg", "roup+detsky_Enterobius+vermicularis_76.jpeg", "roup+detsky_Enterobius+vermicularis_84.jpeg", "rozlitka_Difflugia+oblonga_11f.jpeg", "rozlitka_Difflugia+oblonga_13f.jpeg", "rozlitka_Difflugia+oblonga_221.jpeg", "rozlitka_Difflugia+oblonga_31b.jpeg", "rozlitka_Difflugia+oblonga_390.jpeg", "sasanka+koňska_Actinia+equina_107.jpeg", "sasanka+koňska_Actinia+equina_159.jpeg", "sasanka+koňska_Actinia+equina_1dd.jpeg", "sasanka+koňska_Actinia+equina_259.jpeg", "sasanka+koňska_Actinia+equina_2e2.jpeg", "sepie_125.jpeg", "sepie_17.jpeg", "sepie_1ae.jpeg", "sepie_33b.jpeg", "sepie_38e.jpeg", "skeble+rybnicna_13d.jpeg", "skeble+rybnicna_1b2.jpeg", "skeble+rybnicna_1fc.jpeg", "skeble+rybnicna_2d4.jpeg", "skeble+rybnicna_30d.jpeg", "skrkavka+detska_Ascaris+lumbricoides_120.jpeg", "skrkavka+detska_Ascaris+lumbricoides_21a.jpeg", "skrkavka+detska_Ascaris+lumbricoides_244.jpeg", "skrkavka+detska_Ascaris+lumbricoides_294.jpeg", "skrkavka+detska_Ascaris+lumbricoides_2ce.jpeg", "skulovec+siroky_Daaasdf.jpg", "skulovec+siroky_Dibothriocephalus+latus_19c.jpeg", "skulovec+siroky_Dibothriocephalus+latus_2dd.jpeg", "skulovec+siroky_Dibothriocephalus+latus_348.jpeg", "slavinka_11d.jpeg", "slavka+jedla_1cc.jpeg", "slavka+jedla_20f.jpeg", "slavka+jedla_26e.jpeg", "slavka+jedla_29c.jpeg", "slavka+jedla_2da.jpeg", "slimak_132.jpeg", "slimak_194.jpeg", "slimak_1ef.jpeg", "slimak_2b0.jpeg", "slimak_2e3.jpeg", "slizovka+vlci+mleko_107.jpeg", "slizovka+vlci+mleko_20b.jpeg", "slizovka+vlci+mleko_23e.jpeg", "slunivka+prvok_Actinosphaerium_132.jpeg", "slunivka+prvok_Actinosphaerium_224.jpeg", "slunivka+prvok_Actinosphaerium_3.jpeg", "slunivka+prvok_Actinosphaerium_321.jpeg", "slunivka+prvok_Actinosphaerium_359.jpeg", "srdcovka+jedla_113.jpeg", "srdcovka+jedla_270.jpeg", "srdcovka+jedla_2ab.jpeg", "srdcovka+jedla_2b1.jpeg", "srdcovka+jedla_2e.jpeg", "svalovec+stoceny_Trichinella+spiralis_14f.jpeg", "svalovec+stoceny_Trichinella+spiralis_15e.jpeg", "svalovec+stoceny_Trichinella+spiralis_19b.jpeg", "svalovec+stoceny_Trichinella+spiralis_1bb.jpeg", "svalovec+stoceny_Trichinella+spiralis_1f4.jpeg", "talirovka_19b.jpeg", "talirovka_1e2.jpeg", "talirovka_21b.jpeg", "talirovka_2e2.jpeg", "talirovka_30c.jpeg", "tasemnice_1dc.jpeg", "tasemnice_24a.jpeg", "tasemnice_24c.jpeg", "tasemnice_33a.jpeg", "tasemnice_c1.jpeg", "trepka+velka_Paramecium+caudatum_196.jpeg", "trepka+velka_Paramecium+caudatum_2ff.jpeg", "trepka+velka_Paramecium+caudatum_312.jpeg", "trepka+velka_Paramecium+caudatum_35b.jpeg", "trepka+velka_Paramecium+caudatum_8c.jpeg", "tritónka_3aa.jpeg", "tritónka_4e.jpeg", "trojrozec_1 - Copy.jpeg", "trojrozec_1.jpeg", "trypanozóma+prvok_trypanosoma_1ae.jpeg", "trypanozóma+prvok_trypanosoma_29c.jpeg", "trypanozóma+prvok_trypanosoma_306.jpeg", "trypanozóma+prvok_trypanosoma_3aa.jpeg", "trypanozóma+prvok_trypanosoma_3dc.jpeg", "ustrice+jedla_17.jpeg", "ustrice+jedla_1f4.jpeg", "ustrice+jedla_22a.jpeg", "ustrice+jedla_270.jpeg", "ustrice+jedla_34f.jpeg", "Vetevnik+mozkovy_ (1).jpeg", "Vetevnik+mozkovy_ (2).jpeg", "Vetevnik+mozkovy_ (3).jpeg", "Vetevnik+mozkovy_ (4).jpeg", "Vetevnik+mozkovy_ (5).jpeg", "virenka_Vorticella_109.jpeg", "virenka_Vorticella_1d8.jpeg", "virenka_Vorticella_1ed.jpeg", "virenka_Vorticella_392.jpeg", "virenka_Vorticella_39f.jpeg", "virnik_137.jpeg", "virnik_139.jpeg", "virnik_1cb.jpeg", "virnik_289.jpeg", "virnik_376.jpeg", "vlasovec_10b.jpeg", "vlasovec_195.jpeg", "vlasovec_229.jpeg", "vlasovec_262.jpeg", "vlasovec_2d7.jpeg", "zabrohlist_32d.jpeg", "zabrohlist_3a6.jpeg", "zavinutec_23.jpeg", "zavinutec_285.jpeg", "zavinutec_2b4.jpeg", "zavinutec_2d1.jpeg", "zavinutec_2f6.jpeg", "zebrovka+vejcita_1d8.jpeg", "zebrovka+vejcita_213.jpeg", "zebrovka+vejcita_261.jpeg", "zebrovka+vejcita_31e.jpeg", "zej+obrovsky_135.jpeg", "zej+obrovsky_167.jpeg", "zej+obrovsky_17.jpeg", "zej+obrovsky_319.jpeg", "zej+obrovsky_391.jpeg", "zeva+obrovska_120.jpeg", "zeva+obrovska_136.jpeg", "zeva+obrovska_1a9.jpeg", "zeva+obrovska_1b7.jpeg", "zeva+obrovska_220.jpeg", "zizala_18.jpeg", "zizala_1b8.jpeg", "zizala_23e.jpeg", "zizala_269.jpeg", "zizala_2d5.jpeg"];
-          learned = []
-          all = 81;
-          toShow = possible
-          possible.forEach(thing => {
-            thingname = thing.split("_")[0]
-            if (!photonames.includes(thingname))
-            {
-              photonames.push(thingname);
-            }
-          });
-          console.log(photonames)
-          photos = toShow
-          // Display the first photo
-          changePhoto();
 
-          
-        
-    </script>
-  </body>
+  var select = document.getElementById("dropdown");
+
+  // Add a change event listener to the select element
+  select.addEventListener("change", function() {
+  // Get the selected option element
+  var selectedOption = this.selectedIndex;
+  console.log(selectedOption)
+
+  setup(selectedOption)
+
+  if(change){
+    changePhoto()
+    
+  }else{
+    changePhoto()
+    changePhoto()
+  }
+  
+
+});
+
+setup(2)
+
+changePhoto()
+   
+      setInterval(time, 1000);
+
+      // Get a reference to the select element
+
+  </script>
+</body>
 </html>
