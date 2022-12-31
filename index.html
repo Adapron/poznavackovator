@@ -167,12 +167,14 @@
   var change = true;
   var learned = [];
   var randomNumber = -1;
+  var waslearnedrecently = false;
 
 
 
 
 
   function setup(num){
+    var waslearnedrecently = false;
     clicks = 0;
     numLearned = 0;
   
@@ -263,6 +265,7 @@
   }
 
   function changePhoto() {
+    waslearnedrecently = false;
     tick()
         if(change){
 
@@ -308,6 +311,9 @@
       }
 
   function learn() {
+    if(waslearnedrecently){return}
+    waslearnedrecently = true
+    
     tick()
     learnedName = names[randomNumber]
     if(learned.includes(learnedName)){
