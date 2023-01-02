@@ -9,58 +9,182 @@
 
 
   <div id="ui">
+    <div id = "space"></div>
+    <div id = "top">
+      <div id = "space"></div>
+      <div id="title">
+        <img src="logo.png">
+      </div>
+      <div id = "space"></div>
+    </div>
 
-    <div id="title">Poznávačkovátor 2.0</div>
-    <a href="https://github.com/Adapron/poznavackovator">currently broken, if you want to use this please download the source and run locally (download the index.html and doubleclick it)</a>
-    <select id="dropdown">
-      <option value="option1">1-Řasy, houby, výtrusné, nahosemenné, kulturní rostliny</option>
-      <option value="option2">2-Krytosemenné rostliny</option>
-      <option value="option3" selected>3-Prvoci, houbovci, žahavci, ploštěnci, hlístice, měkkýši, kroužkovci</option>
-      <option value="option3">4-Členovci</option>
-      <option value="option3">5-Ostnokožci, polostrunatci, pláštěnci, bezlebeční, kruhoústí, paryby, ryby</option>
-      <option value="option3">6-Obojživelníci, plazi</option>
-      <option value="option3">7-Ptáci</option>
-      <option value="option3">8-Savci</option>
-      <option value="option3">9-Krytosemenné rostliny</option>
 
-    </select>
-    <a href="old/index.html">old poznavackovator</a>
-    
     <div id = "space"></div>
 
+      <div id = "options">
+      <div id = "space"></div>
+      <select id="dropdown" class="input">
+        <option value="option1">1-Řasy, houby, výtrusné, nahosemenné, kulturní rostliny</option>
+        <option value="option2">2-Krytosemenné rostliny</option>
+        <option value="option3" selected>3-Prvoci, houbovci, žahavci, ploštěnci, hlístice, měkkýši, kroužkovci</option>
+        <option value="option3">4-Členovci</option>
+        <option value="option3">5-Ostnokožci, polostrunatci, pláštěnci, bezlebeční, kruhoústí, paryby, ryby</option>
+        <option value="option3">6-Obojživelníci, plazi</option>
+        <option value="option3">7-Ptáci</option>
+        <option value="option3">8-Savci</option>
+        <option value="option3">9-Krytosemenné rostliny</option>
 
-    <img src="image.jpg" alt="Random Photo" width="809" height="500" style="border: 5px solid black;" id="photo">
+      </select>
+      <div id = "space"style="color:white"></div>
+
+      <div id = "range">
+        <input type="number" id="min" name="min" value="-1" class="input">
+        <input type="number" id="max" name="max" value="-1" class="input">
+        <button id = "setup" onclick="setup(null)" class="input">start with custom settings</button>
+      </div>
+      <div id = "space"></div>
+      <button class = "input" onclick="changebg()">☺☻☺☻☺☻</button>
+      <div id = "space"></div>
+
+    </div>
+    <div id = "space"></div>
+    
+
+    
+    
+    
+    <div id="bot">
+      <div id = "space"></div>
+
+    <img src="image.jpg" alt="Random Photo" width="809" height="500" class="input" id="photo">
     
     
     
     <div id = "space"></div>
     <div id="buttonContainer">
-      <button onclick="changePhoto()" id="changebutton" >click to change image</button>
-      <button onclick="learn()" id="learnbutton" >do not show again</button>
+      <button onclick="changePhoto()" id="changebutton" class="input">click to change image</button>
+      <button onclick="learn()" id="learnbutton" class="input">do not show again</button>
     </div>
     <div id = "space"></div>
-    <div id = "nameDiv" >
+    <div id = "nameDiv" class="input" >
       <a id="photo-name" style="font-size: 50px;" width = "561px" ></a>
     </div>
     <p id="info" style="font-size: 25px;"></p>
   
-    <div id="list-container" style="border: 5px solid black;">
-      <p id="learned-list" style="font-size: 25px;"></p>
+    <div id="list-container"  class="input">
+      <p id="learned-list" style="font-size: 25px;" ></p>
     </div>
-    <button onclick="ex()" id="export" >export</button>
-    <button onclick="logarray()" id="export" >log</button>
-
+    <div id = "space"></div>
+    <button onclick="ex()" id="export" class="input" >export</button>
+    <button onclick="logarray()" id="log" style="display: none;">log</button>
+    <div id = "space"></div>
+  </div> 
+  <div id = "space"></div>
     <div id="exportHere">
 
     </div>
   </div>
 
-  <!-- CSS for styling the UI -->
+              
+<!--⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⠤⡀⡀⡀⡀⡀⡀never gonna give you up⡀⠠⠁⡀⡀⠠⡀⠠⡀⡀⡀⡀⡀⡀⡀⠁⡀⡀-->
+<!--⡀⡀⡀⡀⠂⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡨⣴⣶⢶⡤⣤⡈⠐⡀⡀⡀⢀⠁⡀⡀⠁⡂⡀⠁⡀⠂⠐⠄⡀⠉⠂⡀⡀⡀⠆⡀⡀⡀-->
+<!--⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⠈⡀⡀⡀⡀⡀⡀⡀⡀⣳⣿⣦⣿⣿⠿⣿⣿⡀⡀⠐⡀⠐⡀⡀⡀⡀⡀⠁⡀⡀⠆⡀⠁⠘⠁⠐⡀⠡⡀⡀⠁⡀⡀-->
+<!--⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⢀⡀⡀⡀⡀⠐⡙⢉⡉⠄⢀⡀⠘⣿⡄⡀⠐⡀⡀⡀⡀⡀⡀⡁⠁⡀⡀⠐⠑⡂⢄⡀⡀⢈⡠⢀⠉⠁⡀⡀-->
+<!--⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡇⣈⣀⠥⣤⣒⠄⢹⢇⡀⠑⢄⠈⠄⡀⡀⡀⠤⠢⠄⡀⠅⡀⡀⠂⡀⡀⠐⡀⡀⠄⡀⡀⡀-->
+<!--⡀⡀⡀⡀⡀⡀⡀⡀⠠⡀⡀⡀⡀⡀⠅⡀⡀⡄⡀⡀⡀⡟⠉⡂⢈⠐⡀⠌⢶⡀⡀⠠⠐⠄⠂⠄⡀⠐⡀⠡⡀⢅⡀⡀⢐⡀⡀⠰⡀⠔⡀⡀⡀⡀-->
+<!--⡀⡀⠂⠈⡀⠒⠁⠁⡀⡀⠈⠐⡀⡀⠱⡀⡀⡁⡀⡀⠈⢱⠪⠋⠁⣂⢠⡭⣤⠈⠈⠈⡀⡀⠠⠁⠉⠑⡈⡀⡀⢘⢀⡀⠅⡀⡀⠠⡀⠐⠂⡀⡀⡀-->
+<!--⡀⡂⡀⡀⠄⡀⡀⢀⢀⡀⡀⠑⠠⢀⠄⠥⠂⠁⡀⠊⡀⡀⢮⢳⡀⡀⠠⡲⣿⡀⡀⢀⢁⣀⢀⠒⡄⡀⠉⠄⡀⠨⢀⡀⠅⡀⠠⣨⡀⠄⡀⡀⠐⡀-->
+<!--⠠⠁⡀⡀⡀⡀⡀⡀⡀⡂⡈⡀⡀⢀⡀⡀⠈⡀⡀⡀⢀⢀⡀⣮⡿⣏⢸⡞⠾⢹⣿⣿⣶⣾⣶⣶⣶⣄⡀⠂⡀⡀⠒⡀⠐⡀⡀⡀⡀⠰⢈⡀⡀⡀-->
+<!--⠅⡀⡀⡀⠠⠠⠂⡀⠂⡀⠄⠅⢀⠈⡀⠂⡀⡀⡀⡀⡀⣀⣇⢯⠳⣯⡄⠢⡞⡀⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⡀⡀⡀⡀⡀⠁⡀⡀⠂⡀⡀⡀⡀⡀-->
+<!--⡀⡀⠄⡀⠂⠄⡊⡀⡀⡀⡀⡈⢀⡀⠰⡀⡀⡀⢊⣴⣿⣿⣿⡀⠙⢧⣸⠐⡇⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⡀⡀⡀⡀⠌⢔⡀⡀⡀⡀⠢⢄⡀⠂-->
+<!--⢊⠁⡀⡀⡀⠆⠡⡀⡀⡀⡂⡀⠄⠠⠄⡀⣠⣾⣿⣿⣿⣿⣿⡆⣁⠤⠤⠽⠒⣒⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⡀⡀⢀⡀⠕⡀⠁⡀⡀⠂⡀⡀⡀-->
+<!--⠄⡀⡀⡀⡀⢂⡀⡂⡀⢀⡜⡀⡑⢘⡀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣯⡭⠭⠤⠖⢒⣚⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠂⡪⡀⠁⠤⡀⢐⡀⡀⠄⡀⡀-->
+<!--⢀⢀⡀⡀⢠⠈⡀⠁⠉⠐⠠⡨⠃⠈⠒⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣍⡭⠬⠴⠖⠒⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠈⢔⠐⡐⠄⠂⡀⡀⡀⢀⡀-->
+<!--⢀⠑⡀⠊⠁⡀⡀⠈⠰⢀⠊⠉⡀⡀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣉⣭⠥⠤⠶⢺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⡀⢀⡀⡄⡀⡀⢨⡀⡀⠁-->
+<!--⢀⢸⡀⠁⠁⡁⡉⢉⢨⢌⠄⠈⠁⠉⠁⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣙⡭⠭⠤⠶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠦⠤⠤⠤⠤⢍⣤⣤⣥⡄-->
+<!--⠄⡜⠨⡀⡀⡀⡂⣐⢸⡱⢌⢜⡀⡀⡎⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡋⣩⡭⠭⠤⢿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⠆⠂⡀⡔⡣⡪⡀⡀⡀⡀-->
+<!--⡂⡇⠢⡀⡀⠠⠅⠨⡜⣳⡀⢤⡑⡣⠅⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣋⣭⠭⠤⣒⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⡀⠢⠔⡪⠱⠢⡀⡀⡀⡀-->
+<!--⡂⢅⡪⠠⠤⠰⠆⡂⡎⢹⢒⠂⢇⡁⢀⣿⣿⣿⣿⣿⡁⣿⣿⣿⣿⣿⣿⡇⣚⣩⡭⠴⣒⣿⣿⣿⣿⣿⣻⣼⠏⠈⣿⡇⠨⠢⡜⢠⡘⠱⡀⡀⡀⡂-->
+<!--⡀⡇⡜⢨⠨⠉⠉⠍⣱⡮⢁⡹⡭⢕⢺⣿⣿⣿⣿⣿⡃⣧⣿⣿⣿⣿⣿⡇⣞⣯⠭⠵⣒⣭⣿⣿⣿⣿⠗⡡⣏⠭⣿⡧⢐⠢⠜⢢⢸⡕⠥⠭⠭⠄-->
   <style>
+    body {
+      background-image: url('no');
+    background-size: cover;
+    }
+    .input{
+      background-image: linear-gradient(45deg, #ffffff, #ffffff);
+      align-items: center;
+      border: 5px;
+      border-color: rgb(201, 218, 223);
+      border-style:groove;
+      box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+      
+      
+
+    }
+    .input:active {
+      animation: pulse 0.1s linear;
+    }
+
+ 
+
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(0.95);
+      }
+    }
+    #top{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 50px 5px rgba(163, 40, 147, 0.5);
+     
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: fit-content;
+      background-image: linear-gradient(180deg, #ffffff, #ffffff);
+      
+      
+      
+      color: rgb(255, 255, 255);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    #options{
+      background-image: linear-gradient(180deg, #ffffff, #ffffff);
+      width:700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 10px 5px rgba(163, 40, 147, 0.3);
+      
+
+    }
+    #bot{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: linear-gradient(45deg, #ffffff, #ffffff);
+      width: 1000px;
+      height:fit-content ;
+      box-shadow: 0 0 50px 5px rgba(163, 40, 147, 0.5);
+     
+    }
     #space{
       height: 25px;
     }
+    #photo{
+      box-shadow: 0 0 20px 2px rgba(163, 40, 147, 0.5);
+    }
     #title{
+      color: rgb(24, 9, 20);
       font-size: 50px;
     }
     #dropdown{
@@ -80,23 +204,31 @@
       display: flex;
       justify-content: space-between;
       height: 50px;
+      
+    }
+    #range {
+      display: flex;
+      justify-content: space-between;
+      height: 50px;
     }
     #changebutton{
       height: 50px;
       width: 400px;
       font-size: 35px;
+      
+      
     }
     #learnbutton{
       height: 50px;
       width: 400px;
       font-size: 35px;
+      
+      
     }
     #nameDiv{
       width: 813px;
       height: 70px;
-      border: 3px;
-      border-color: black;
-      border-style: solid;
+      
       text-align: center;
     }
     #imageName{
@@ -110,6 +242,13 @@
     }
     #exportSpacing{
       height: 200px;
+    }
+    #export{
+      height: 50px;
+      width: 200px;
+      font-size: 35px;
+      
+      
     }
   </style>
 
@@ -145,7 +284,7 @@
       ["pryskyřník prudký","orsej jarní","blatouch bahenní","koniklec luční","čemeřice černá","orlíček obecný","oměj šalamounek","hlaváček jarní","plamének (klematis)","upolín evropský","lakušník vodní","sasanka hajní","sasanka pryskyřníkovitá","jaterník podléška","jabloň domácí","hrušeň obecná","třešeň ptačí (obecná)","slivoň slíva (obecná)","slivoň švestka","broskvoň obecná","meruňka obecná","ostružiník křovitý (obecný)","ostružiník maliník","růže šípková","jeřáb ptačí","kuklík městský","kontryhel obecný","krvavec toten","mochna husí","tavolník","hloh obecný","trnka obecná","vlčí bob mnoholistý (lupina mnoholistá)","hrachor jarní (hrachor lecha)","jetel luční","jete plazivý","štírovník růžkatý","vojtěška setá","vikev ptačí","janovec metlatý","trnovník akát","štědřenec odvislý","podzemnice olejná","cizrna beraní","čočka jedlá","hrách setý","fazol obecný","sója luštinatá","řeřišnice luční","česnáček lékařský","kokoška pastuší tobolka","penízek rolní","ředkev ohnice (ohnice polní, ohnice obecná)","brukev řepka olejka","ředkev bílá","ředkev setá","křen selský","brukev zelná kapusta","brukev zelná kedluben","brukev zelná květák","brukev zelná brokolice","brukev zelná kapusta růžičková","brukev zelná","bedrník obecný","bršlice kozí noha","krabilice zápašná","děhel lesní","bolševník velkolepý","bolehlav plamatý","máčka ladní","kmín kořenný","mrkev setá","petržel zahradní","miřík celer","libeček lékařský","pastinák setý","kopr vonný","hluchavka nachová","hluchavka bílá","hluchavka pitulník","šalvěj lékařská","popenec obecný (břečťanolistý, břečťanovitý)","zběhovec plazivý","mateřídouška obecná","máta peprná","majoránka zahradní","meduňka lékařská","bazalka pravá","černohlávek obecný","rozmarýna lékařská","čistec lesní","pomněnka lesní","kostival lékařský","plicník lékařský","hadinec obecný","smetánka lékařská","kopretina bílá","sedmikráska chudobka","podběl lékařský","pupava bezlodyžná","chrpa polní","slunečnice roční","zlatobýl obecný (celík zlatobýl)","řebříček obecný","heřmánek pravý","heřmánek terčovitý","vratič obecný","rmen rolní","pcháč oset","slunečnice topinambur","pelyněk černobýl","lopuch větší","čekanka obecná","jestřábník chlupáček (chlupáček zední)","hvězdnice chlumní","pěťour maloúborný","devětsil lékařský","devětsil bílý","locika salát","gerbera","astra","chryzantéma","aksamitník","bříza bělokorá","olše lepkavá","ořešák královský","líska obecná","habr obecný","dub zimní","dub letní","dub korkový","kaštanovník setý","buk lesní","lilie zlatohlavá (zlatohlávek)","ocún jesenní","česnek medvědí","vraní oko čtyřlisté","cibule česnek","cibule kuchyňská","česnek pór","česnek pažitka","konvalinka vonná","kokořík mnohokvětý","pstroček dvoulistý","modřenec","křivatec žlutý","šafrán jarní","narcis žlutý","tulipán","bledule jarní","hyacint východní","sněženka podsněžník","kosatec žlutý","banánovník","mečík bahenní","agáve","lipnice luční","srha laločnatá (srha říznačka)","bojínek luční","psárka luční","pýr plazivý","tomka vonná","žito seté","pšenice setá","ječmen setý","oves setý","ovsík vyvýšený","rákos obecný","bambus","kostřava červená","kukuřice setá","rýže setá","cukrová třtina","proso seté","šácholan","leknín bílý","stulík žlutý","viktorie královská","mák vlčí","mák setý","vlaštovičník větší","divizna velkokvětá","rozrazil rezekvítek","náprstník velkokvětý","lnice květel","lilek černý","lilek brambor","lilek rajče","lilek jedlý","blín černý","paprika setá (paprika roční)","rulík zlomocný","tabák virginský","kopřiva dvoudomá","kopřiva žahavka","konopí seté","chmel otáčivý","merlík bílý","lebeda lesklá","řepa cukrovka","řepa krmná","řepa červená","špenát setý","tykev dýně (turek)","okurka setá","meloun vodní","tykev obecná cuketa","sléz lesní","ibišek čínský","bavlník chlupatý","javor klen","javor mléč","lípa srdčitá","jutovník","vrba jíva","topol černý","vstavač májový","vstavač vojenský","střevíčník pantoflíček","orchidej","hlístník hnízdák","vanilovník","datlovník pravý","palma olejná","kokosovník ořechoplodý"]                                //9-Krytosemenné rostliny - vyšší gymnázium-seminář.pdf9-Krytosemenné rostliny - vyšší gymnázium-seminář.pdf
     ],
     [ //latin
-      ["člunovka","bokovka","bobulák","chaluha bublinatá","hroznovice","potěrka žabí símě","Porphyra","rosolenka","pláštěnka","váleč","zrněnka","šroubatka","jařmatka","řetízovka","parožnatka","porost locikový","žabí vlas","štětíčkovec","plíseň hlavičková","hlízenka","paličkovice nachová","smrž","lanýž","kuřátka","liška","choroš","hřib dubový","hřib satan","kozák","klouzek","křemenáč","holubinka","ryzec","hlíva ústřičná","václavka","žampion","bedla","muchomůrka zelená","muchomůrka červená","hadovka smrdutá","pýchavka","pestřec","dutohlávka","mapovník","provazovka","terčovka","porostnice mnohotvárná","ploník","rašeliník","dvouhrotec","bělomech","měřík","zkrutek","plavuň vidlačka","přeslička rolní","přeslička lesní","přeslička obrovská","kapraď samec","sleziník","jelení jazyk","osladič","žebrovice","hasivka orličí","pérovník","cykas","jinan dvoulaločný","borovice","kosodřevina","smrk ztepilý","modřín","jedle bělokorá","jalovec","cypřišek","zerav","tis","cedr","sekvoj","špenát setý","řepa obecná","brukev zelná","kedluben","květák","zelí","kapusta","ředkev","křen","řepka olejka","len setý","tykev","jahodník","ostružiník","růže","třešeň","slivoň","meruňka","broskvoň","jabloň","hrušeň","hrách","fazol","čočka","sója","podzemnice","mrkev","petržel","miřík celer","kopr","kmín","lilek brambor","paprika","rajče","tabák","locika salát","citroník","fíkovník","aktinidie","olivovník","čajovník","kávovník","kakaovník","cibule kuchyňská","česnek","pšenice","žito","ječmen","oves","rýže","kukuřice","banánovník","ananasovník","datlovník","kokosovník"],
+      ["člunovka","bokovka","bobulák","chaluha bublinatá","hroznovice","potěrka žabí símě","Porphyra","rosolenka","chlamydomonas","váleč","zrněnka","šroubatka","jařmatka","řetízovka","parožnatka","porost locikový","žabí vlas","štětíčkovec","plíseň hlavičková","hlízenka","paličkovice nachová","smrž","lanýž","kuřátka","liška","choroš","hřib dubový","hřib satan","kozák","klouzek","křemenáč","holubinka","ryzec","hlíva ústřičná","václavka","žampion","bedla","muchomůrka zelená","muchomůrka červená","hadovka smrdutá","pýchavka","pestřec","dutohlávka","mapovník","provazovka","terčovka","porostnice mnohotvárná","ploník","rašeliník","dvouhrotec","bělomech","měřík","zkrutek","plavuň vidlačka","přeslička rolní","přeslička lesní","přeslička obrovská","kapraď samec","sleziník","jelení jazyk","osladič","žebrovice","hasivka orličí","pérovník","cykas","jinan dvoulaločný","borovice","kosodřevina","smrk ztepilý","modřín","jedle bělokorá","jalovec","cypřišek","zerav","tis","cedr","sekvoj","špenát setý","řepa obecná","brukev zelná","kedluben","květák","zelí","kapusta","ředkev","křen","řepka olejka","len setý","tykev","jahodník","ostružiník","růže","třešeň","slivoň","meruňka","broskvoň","jabloň","hrušeň","hrách","fazol","čočka","sója","podzemnice","mrkev","petržel","miřík celer","kopr","kmín","lilek brambor","paprika","rajče","tabák","locika salát","citroník","fíkovník","aktinidie","olivovník","čajovník","kávovník","kakaovník","cibule kuchyňská","česnek","pšenice","žito","ječmen","oves","rýže","kukuřice","banánovník","ananasovník","datlovník","kokosovník"],
       ["bez černý","břečťan popínavý","brusnice borůvka","brusinka obecná","bříza","buk","líska","platan","olše","lípa","réva vinná","dub","habr","hloh","chmel","jasan","javor","jeřáb","jírovec","jmelí","topol","trnka","vrba","vřes","ořešák královský","blatouch bahenní","sasanka hajní","koniklec","pryskyřník prudký","orsej jarní","hlaváček jarní","leknín bílý","mák vlčí","vlaštovičník větší","koukol polní","kohoutek luční","hvozdík","ptačinec","lebeda","šťovík","rdesno","kopřiva","violka vonná","penízek rolní","vavřín","kokoška pastuší tobolka","třezalka","česnáček lékařský","rosnatka okrouhlolistá","pryšec chvojka","mochna","krvavec toten","kontryhel obecný","vlčí bob mnoholistý (lupina)","jetel","vikev","hrachor","netýkavka nedůtklivá","kakost","šťavel","bršlice kozí noha","bolševník obecný","prvosenka","hořec","barvínek menší (brčál)","svízel přítula","svlačec rolní","pomněnka","plicník lékařský","kostival lékařský","lilek černý","rulík zlomocný","divizna","rozrazil rezekvítek","náprstník velkokvětý","podbílek šupinatý","jitrocel","zběhovec plazivý","popenec břečťanolistý","hluchavka nachová","pitulník žlutý","šalvěj","mateřídouška","máta","zvonek","čekanka","pampeliška","zlatobýl (celík)","sedmikráska","hvězdnice","pěťour maloúborný","rmen rolní","řebříček obecný","heřmánek","vratič","kopretina bílá","pelyněk","podběl","devětsil","lopuch","pcháč rolní","pupava bezlodyžná","chrpa polní","česnek medvědí","ocún jesenní","lilie zlatohlavá","konvalinka vonná","vraní oko čtyřlisté","sněženka podsněžník","bledule jarní","střevíčník pantoflíček","kosatec žlutý","vstavač","sítina rozkladitá","lipnice roční","srha laločnatá","pýr plazivý","bojínek luční","rákos obecný","orobinec","puškvorec","okřehek","tulipán","trnovník akát"],
       ["Euglena","ceratium","Peridinium","Trypanosoma","Trichomonas vaginalis","Giardia intestinalis","ameba","difflugia","Radiozoa","Actinopoda","Fuligo septica" ,"Entodiniomorphida","Paramecium caudatum","vorticella","Carchesium","Stentor","Stylonychia mytilus","colpidium","sycon raphanus","Spongia officinalis","Cliona patera","Suberites domuncula","Euplectella aspergillum","Spongilla lacustris","Hydra vulgaris","Craspedacusta sowerbii","Physalia physalis","cyanea capillata","Rhizostoma","Cubozoa","Corallium rubrum","Ptilosarcus gurneyi","Diploria labyrinthiformis","Actinia equina","bolinopsis infundibulum","cestum veneris","Dugesia gonocephala","diphyllobothrium latum","Cestoda","fasciola hepatica","Schistosoma haematobium","Diplozoon paradoxum","Rotifera","Ascaris lumbricoides","Enterobius vermicularis","Dracunculus medinensis","Trichinella spiralis ","Viviparus contectus","Conus","Bolinus brandaris","Aplysia depilans","Lymnaea stagnalis","Galba truncatula","Planorbarius corneus","Helix pomatia","arion vulgaris","limax","Cepaea nemoralis","charonia tritonis","Cypraea tigris","Pinctada margaritifera","Pecten jacobaeus","Ostrea edulis","Cerastoderma edule","Mytilus edulis","Anodonta cygnea","Margaritifera margaritifera","Tridacna gigas","Nautilus pompilius","Octopus vulgaris","Argonauta argo","Teuthida","Sepia","Nereis pelagica","palolo worm","Aphrodita aculeata","Lumbricina","tubifex tubifex","Piscicola geometra","Hirudinea","Tardigrada"],
       ["trilobit","ostrorep","štír","snovačka jedovatá","sklípkan","křižák","pokoutník","skákavky","Argyroneta aquatica","slíďák","běžník","sekáč obecný","štírek obecný","Dermanyssus gallinae","klíště","Demodex brevis","zákožka","listonoh","žábronožka","hrotnatka (perloočka)","Branchiura","Cyclops strenuus","Calanoida","kreveta","langusta","humr","rak říční","Pagurus bernhardus","krab","beruška vodní","stínka","blešivec","stonožka","mnohonožka","svinule","rybenka","jepice","Anisoptera","vážka","šváb","kudlanka","Isoptera","škvor","kobylka","cvrček","saranče","krtonožka","Pediculus capitis","cikáda","vlnatka","mšice","znakoplavka","vodoměrka","štěnice","ruměnice","Halyomorpha halys","splešťule","zlatoočka","mravkolev","chrostík","pakobylka","bourec morušový","lišaj smrtihlav","babočka paví oko","babočka admirál","otakárek","bělásek","žluťásek","Tineidae","píďalka","obaleč","tiplice","komár","ovád","octomilka","moucha domácí","masařka","Siphonaptera","Rhyssa persuasoria","mravenec","Vespoidea","sršeň","včela","čmelák","střevlík","potápník","hrobařík","světluška","slunéčko sedmitečné","Meloe","vodomil","chroust","chrobák","roháč","Alaus oculatus","červotoč","potemník","mandelinka","tesařík","Curculionidae","lýkožrout","páteříček","nosorožík","vruboun"],
@@ -172,12 +311,24 @@
   var learned = [];
   var randomNumber = -1;
   var waslearnedrecently = false;
-
-
+  var minimage = 5;
+  var maximage = 10;
+  var funnybg = false;
+  var timeinterval;
 
 
 
   function setup(num){
+    clearInterval(timeinterval)
+    timeinterval = setInterval(time, 1000);
+    document.getElementById("learned-list").innerHTML = ""
+    if(num == null){
+      num = selectedPoznavacka
+    }
+    minimage = parseInt(document.getElementById("min").value)-1;
+    maximage = parseInt(document.getElementById("max").value);
+    console.log(maximage)
+
     var waslearnedrecently = false;
     clicks = 0;
     numLearned = 0;
@@ -187,16 +338,40 @@
     learned = [];
     randomNumber = -1;
     tick()
+    if(minimage < 0){
+      minimage = 0
+      document.getElementById("min").value = 1
+    }
+    
     names = []
     latin = []
     nameArray = pzndata[0][num]
     latinArray = pzndata[1][num]
-    for (let i = 0; i < nameArray.length; i++) {
+
+    if(maximage <= minimage){
+      maximage = nameArray.length
+      document.getElementById("max").value = nameArray.length
+      
+    }
+    if(maximage > nameArray.length){
+      maximage = nameArray.length
+      document.getElementById("max").value = nameArray.length
+    }
+
+    console.log(nameArray.length)
+    console.log(maximage)
+    for (let i = minimage; i < maximage; i++) {
       names.push(nameArray[i])
       latin.push(latinArray[i])      
     }
-    all = nameArray.length;
+    all = maximage-minimage;
+    if(change){
+    changePhoto()
     
+  }else{
+    changePhoto()
+    changePhoto()
+  }
   }
 
   function randInt(min, max){
@@ -206,13 +381,31 @@
     return(Math.floor(Math.random()*(max-min)+min))
   }
 
+
+  function changebg() {
+    if(funnybg){
+      //no funny
+
+      document.body.style.backgroundImage = "url('nofile')";
+
+
+      funnybg = false
+    }else{
+      //funny
+
+      document.body.style.backgroundImage = "url('sosta.png')";
+
+      funnybg = true
+    }
+  }
+
   function search(term, imgElement, displayName) { //returns random link to a photo
 
     if(imgElement != null){
       imgElement.src = "loading.png"
     }
 
-    
+  
 
     start = Date.now()
 
@@ -291,6 +484,8 @@
 
           if(names.length == 0){
             document.getElementById('photo-name').innerHTML = "all done"
+            document.getElementById("photo").src = "https://media.discordapp.net/attachments/511567732529954826/1059466695430901871/13541716-group-of-happy-business-people-giving-the-thumbs-up-sign.png";
+            clearInterval(timeinterval)
             return;
           }
 
@@ -354,8 +549,8 @@
    //      for (let i = 0; i < nameArray.length; i++) {
    //        scraped[selectedPoznavacka].push([])
    //      }
-    for (let i = 0; i < nameArray.length; i++) {
-      search(latinArray[i],null,nameArray[i])
+    for (let i = 0; i < names.length; i++) {
+      search(latin[i],null,names[i])
     }
     
   }
@@ -389,28 +584,26 @@
 
   // Add a change event listener to the select element
   select.addEventListener("change", function() {
+  
   // Get the selected option element
   var selectedOption = this.selectedIndex;
   console.log(selectedOption)
-
+  document.getElementById("max").value = pzndata[0][selectedOption].length
+  document.getElementById("min").value = 0
   setup(selectedOption)
 
-  if(change){
-    changePhoto()
-    
-  }else{
-    changePhoto()
-    changePhoto()
-  }
+  
   
 
 });
 
 setup(2)
+document.getElementById("max").value = pzndata[0][2].length
+document.getElementById("min").value = 0
 
-changePhoto()
+
    
-      setInterval(time, 1000);
+      //var timeinterval = setInterval(time, 1000);
 
       // Get a reference to the select element
 
