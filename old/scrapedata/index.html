@@ -218,24 +218,24 @@
 
     maximages = 10
 
-    //const corsProxy = "https://cors-anywhere.herokuapp.com/"; // change this to your chosen CORS proxy
-    //const link = "https://www.bing.com/images/search?q="+term.split(" ").join("+")+"&form=HDRSC2&first=1&cw=1183&ch=1739&tsc=ImageHoverTitle"
+    const corsProxy = "https://cors-anywhere.herokuapp.com/"; // change this to your chosen CORS proxy
+    const link = "https://www.bing.com/images/search?q="+term.split(" ").join("+")+"&form=HDRSC2&first=1&cw=1183&ch=1739&tsc=ImageHoverTitle"
 
 
-    index = latinArray.indexOf(term)
-    possibles = scraped[selectedPoznavacka][index]
-    console.log(possibles)
-    //fetch(corsProxy + link)
-    //  .then(response => response.text())
-    //  .then(text => {
-    //    imgs = text.split("class=\"mimg\"")
-    //    possibles = []
-//
-    //    for (let i = 1; i < maximages+1; i++) {
-    //      const element = imgs[i];
-    //      src = element.split("\"")[7]
-    //      possibles.push(src)
-    //    }
+    
+    
+
+    fetch(corsProxy + link)
+      .then(response => response.text())
+      .then(text => {
+        imgs = text.split("class=\"mimg\"")
+        possibles = []
+
+        for (let i = 1; i < maximages+1; i++) {
+          const element = imgs[i];
+          src = element.split("\"")[7]
+          possibles.push(src)
+        }
 
 
         if(imgElement != null){
@@ -249,8 +249,8 @@
 
 
 
-          
-          
+          index = latinArray.indexOf(term)
+          console.log(term)
           
 
           
@@ -266,7 +266,7 @@
 
           possibles.forEach(element => {
 
-            //scraped[selectedPoznavacka][index].push(element)
+            scraped[selectedPoznavacka][index].push(element)
             addedImage = document.createElement("img")
             addedImage.id = "addedImage"
             addedImage.src = element
@@ -282,7 +282,8 @@
 
         console.log("diff: "+(Date.now()-start).toString())
 
-      }
+    });      
+  }
 
   function changePhoto() {
     waslearnedrecently = false;
@@ -349,11 +350,11 @@
   }
 
   function ex(){
-   ////prepare the save array
-   //scraped[selectedPoznavacka] = []
-   //      for (let i = 0; i < nameArray.length; i++) {
-   //        scraped[selectedPoznavacka].push([])
-   //      }
+    //prepare the save array
+    scraped[selectedPoznavacka] = []
+          for (let i = 0; i < nameArray.length; i++) {
+            scraped[selectedPoznavacka].push([])
+          }
     for (let i = 0; i < nameArray.length; i++) {
       search(latinArray[i],null,nameArray[i])
     }
