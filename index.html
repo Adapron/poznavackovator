@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
+<!-- saved from url=(0042)https://adapron.github.io/poznavackovator/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>one poznavackovator to rule them all</title>
 </head>
-<body>
+<body style="background-image: url(&quot;sosta.png&quot;);">
 
 
 
 
   <div id="ui">
-    <div id = "space"></div>
-    <div id = "top">
-      <div id = "space"></div>
+    <div id="space"></div>
+    <div id="top">
+      <div id="space"></div>
       <div id="title">
         <img src="logo.png">
       </div>
-      <div id = "space"></div>
+      <div id="space"></div>
     </div>
 
 
-    <div id = "space"></div>
+    <div id="space"></div>
 
-      <div id = "options">
-      <div id = "space"></div>
+      <div id="options">
+      <div id="space"></div>
       <select id="dropdown" class="input">
         <option value="option1">1-Řasy, houby, výtrusné, nahosemenné, kulturní rostliny</option>
         <option value="option2">2-Krytosemenné rostliny</option>
-        <option value="option3" selected>3-Prvoci, houbovci, žahavci, ploštěnci, hlístice, měkkýši, kroužkovci</option>
+        <option value="option3" selected="">3-Prvoci, houbovci, žahavci, ploštěnci, hlístice, měkkýši, kroužkovci</option>
         <option value="option3">4-Členovci</option>
         <option value="option3">5-Ostnokožci, polostrunatci, pláštěnci, bezlebeční, kruhoústí, paryby, ryby</option>
         <option value="option3">6-Obojživelníci, plazi</option>
@@ -35,51 +35,56 @@
         <option value="option3">9-Krytosemenné rostliny</option>
 
       </select>
-      <div id = "space"style="color:white"></div>
+      <div id="space" style="color:white"></div>
 
-      <div id = "range">
+      <div id="range">
         <input type="number" id="min" name="min" value="-1" class="input">
         <input type="number" id="max" name="max" value="-1" class="input">
-        <button id = "setup" onclick="setup(null)" class="input">start with custom settings</button>
+        <button id="setup" onclick="setup(null)" class="input">start with custom settings</button>
       </div>
-      <div id = "space"></div>
-      <button class = "input" onclick="changebg()">☺☻☺☻☺☻</button>
-      <div id = "space"></div>
+      <div id="space"></div>
+      <button class="input" onclick="changebg()">☺☻☺☻☺☻</button>
+      <button class="input" onclick="toggleTest()">test mode</button>
+      <div id="space"></div>
 
     </div>
-    <div id = "space"></div>
+    <div id="space"></div>
     
 
     
     
     
     <div id="bot">
-      <div id = "space"></div>
+      <div id="space"></div>
 
-    <img src="image.jpg" alt="Random Photo" width="809" height="500" class="input" id="photo">
+    <img src="" alt="Random Photo" width="809" height="500" class="input" id="photo">
     
     
     
-    <div id = "space"></div>
+    <div id="space"></div>
     <div id="buttonContainer">
-      <button onclick="changePhoto()" id="changebutton" class="input">click to change image</button>
+      <button onclick="changePhoto()" id="changebutton" class="input">click to show name</button>
       <button onclick="learn()" id="learnbutton" class="input">do not show again</button>
     </div>
-    <div id = "space"></div>
-    <div id = "nameDiv" class="input" >
-      <a id="photo-name" style="font-size: 50px;" width = "561px" ></a>
+    <div id="testContainer">
+      <input type="text" id="testInput" name="enter name here" class="input">
+      <button onclick="guess()" id="guessButton" class="input">guess</button>
     </div>
-    <p id="info" style="font-size: 25px;"></p>
+    <div id="space"></div>
+    <div id="nameDiv" class="input">
+      <a id="photo-name" style="font-size: 50px; visibility: hidden;" width="561px">slávka jedlá</a>
+    </div>
+    <p id="info" style="font-size: 25px;">time spent: 57 seconds; learned/tolearn/sum: 0/81/81; number of photos shown: 1; learned:</p>
   
-    <div id="list-container"  class="input">
-      <p id="learned-list" style="font-size: 25px;" ></p>
+    <div id="list-container" class="input">
+      <p id="learned-list" style="font-size: 25px;"></p>
     </div>
-    <div id = "space"></div>
-    <button onclick="ex()" id="export" class="input" >export</button>
+    <div id="space"></div>
+    <button onclick="ex()" id="export" class="input">export</button>
     <button onclick="logarray()" id="log" style="display: none;">log</button>
-    <div id = "space"></div>
+    <div id="space"></div>
   </div> 
-  <div id = "space"></div>
+  <div id="space"></div>
     <div id="exportHere">
 
     </div>
@@ -213,20 +218,30 @@
     }
     #changebutton{
       height: 50px;
-      width: 400px;
+      width: 408px;
       font-size: 35px;
       
       
     }
+    #guessButton{
+      height: 50px;
+      width: 308px;
+      font-size: 35px;
+    }
+    #testInput{
+      height: 38px;
+      width: 488px;
+      font-size: 35px;
+    }
     #learnbutton{
       height: 50px;
-      width: 400px;
+      width: 408px;
       font-size: 35px;
       
       
     }
     #nameDiv{
-      width: 813px;
+      width: 808px;
       height: 70px;
       
       text-align: center;
@@ -315,8 +330,117 @@
   var maximage = 10;
   var funnybg = false;
   var timeinterval;
+  var testMode = false;
+  var goodGuesses = 0;
+  var badGuesses = 0;
+
+if(testMode){
+document.getElementById("buttonContainer").style.display = "none"
+document.getElementById("testContainer").style.display = "block"
+}else{
+document.getElementById("buttonContainer").style.display = "block"
+document.getElementById("testContainer").style.display = "none"
+}
+
+  function toggleTest(){
+    if(testMode){
+testMode=false
+  }else{
+testMode=true
+}
+if(testMode){
+document.getElementById("buttonContainer").style.display = "none"
+document.getElementById("testContainer").style.display = "block"
+}else{
+document.getElementById("buttonContainer").style.display = "block"
+document.getElementById("testContainer").style.display = "none"
+}
+}
+
+document.getElementById("testInput").addEventListener("keydown",
+  function(event) {
+    if(event.key === "Enter") {
+      guess()
+    }
+  }
+)
+
+function levenshteinDistance(a, b) {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+
+  const matrix = [];
+
+  // Increment along the first column of each row
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+
+  // Increment each column in the first row
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+
+  // Fill in the rest of the matrix
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, // Substitution
+                                matrix[i][j - 1] + 1, // Insertion
+                                matrix[i - 1][j] + 1); // Deletion
+      }
+    }
+  }
+
+  return matrix[b.length][a.length];
+}
+
+function removeDiacritics(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
 
+console.log(true && true)
+
+
+  function guess(){
+    guessed = removeDiacritics(document.getElementById("testInput").value.toLowerCase())
+    shownImg = removeDiacritics(names[randomNumber].toLowerCase())
+
+    console.log(shownImg)
+console.log(guessed)
+
+
+
+
+
+if(guessed.split(" ").length == 1 & shownImg.split(" ").length > 1){
+  shownImg = shownImg.split(" ")[0]
+}
+
+let levDistance = levenshteinDistance(shownImg, guessed)
+threshold = 2
+
+    if(levDistance <= threshold){
+      //good
+      learn()
+      //alert("you guessed correctly")
+      changePhoto()
+      changePhoto()
+
+    }else{
+      //bad
+      //alert("you guessed incorrectly")
+      changePhoto()
+       setTimeout(() => {changePhoto()}, 1000);
+    }
+console.log("clearing field")
+  document.getElementById("testInput").value = ""
+
+
+  }
 
   function setup(num){
     clearInterval(timeinterval)
@@ -514,11 +638,15 @@
           change = false;
 
         }else{
-
+	  
           document.getElementById("changebutton").innerHTML = "click to change image"
 
           const nameElement = document.getElementById('photo-name');
-          nameElement.style.visibility = 'visible';
+
+	  
+	    nameElement.style.visibility = 'visible';
+	  
+          
 
           change = true;
         }
@@ -597,6 +725,9 @@
 
 });
 
+changebg()
+changebg()
+
 setup(2)
 document.getElementById("max").value = pzndata[0][2].length
 document.getElementById("min").value = 0
@@ -608,5 +739,6 @@ document.getElementById("min").value = 0
       // Get a reference to the select element
 
   </script>
-</body>
-</html>
+
+
+</body></html>
