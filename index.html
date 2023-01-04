@@ -334,6 +334,7 @@
   var goodGuesses = 0;
   var badGuesses = 0;
   var possibles = [];
+  var currentShownVariation = 0;
 
 if(testMode){
 document.getElementById("buttonContainer").style.display = "none"
@@ -367,7 +368,8 @@ document.getElementById("testInput").addEventListener("keydown",
 )
 
 function samename() {
-  document.getElementById("photo").src = possibles[randInt(0,maximages)]
+  currentShownVariation = (currentShownVariation +1)%10
+  document.getElementById("photo").src = possibles[currentShownVariation]
 }
 
 
@@ -560,7 +562,8 @@ console.log("clearing field")
 
 
         if(imgElement != null){
-          imgElement.src = possibles[randInt(0,maximages)]
+          currentShownVariation = randInt(0,maximages)
+          imgElement.src = possibles[currentShownVariation]
         }else{
 
           
