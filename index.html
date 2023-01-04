@@ -57,7 +57,7 @@
     <div id="bot">
       <div id="space"></div>
 
-    <img src="" alt="Random Photo" width="809" height="500" class="input" id="photo">
+    <img src="" alt="Random Photo" width="809" height="500" class="input" id="photo" onclick="samename()">
     
     
     
@@ -333,6 +333,7 @@
   var testMode = false;
   var goodGuesses = 0;
   var badGuesses = 0;
+  var possibles = [];
 
 if(testMode){
 document.getElementById("buttonContainer").style.display = "none"
@@ -364,6 +365,11 @@ document.getElementById("testInput").addEventListener("keydown",
     }
   }
 )
+
+function samename() {
+  document.getElementById("photo").src = possibles[randInt(0,maximages)]
+}
+
 
 function levenshteinDistance(a, b) {
   if (a.length === 0) return b.length;
@@ -411,8 +417,6 @@ console.log(true && true)
 
     console.log(shownImg)
 console.log(guessed)
-
-
 
 
 
