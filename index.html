@@ -154,7 +154,12 @@
       animation: pulse 0.1s linear;
     }
 
- 
+    
+
+    .word {
+      margin-right: 10px;
+      cursor: pointer;
+    }
 
     @keyframes pulse {
       from {
@@ -224,6 +229,8 @@
       align-items: center;
     }
     #list-container {
+      display: flex;
+      flex-wrap: wrap;
       overflow-y: scroll;
       height: 200px;
       width: 809px;
@@ -590,7 +597,7 @@ console.log("clearing field")
     //const link = "https://www.bing.com/images/search?q="+term.split(" ").join("+")+"&form=HDRSC2&first=1&cw=1183&ch=1739&tsc=ImageHoverTitle"
 
 
-    index = latinArray.indexOf(term)
+    index = nameArray.indexOf(displayName)
     possibles = scraped[selectedPoznavacka][index]
     console.log(possibles)
     //fetch(corsProxy + link)
@@ -679,10 +686,10 @@ console.log("clearing field")
           // Select a random photo from the array
           randomNumber = randInt(0,names.length)
           displayName = names[randomNumber]
-          latinName = latin[randomNumber]
+          
 
           // Update the src attribute of the img element
-          search(latinName,imgElement, displayName)
+          search("unused",imgElement, displayName)
           
           // Update the name of the photo
           nameElement.innerHTML = displayName;
@@ -721,6 +728,21 @@ console.log("clearing field")
       }
     });
 
+    function createWordElement(word) {
+      var wordElement = document.createElement("span");
+      wordElement.className = "word";
+      wordElement.textContent = word;
+      wordElement.addEventListener("click", function() {
+        var cancelled = wordElement.textContent
+        numLearned-=1
+        tick()
+        names.push(cancelled)
+        learned.splice(learned.indexOf(cancelled), 1)
+        wordElement.remove();
+
+      });
+      return wordElement;
+    }
   function learn() {
     if(waslearnedrecently){return}
     if(!change){return}
@@ -733,9 +755,10 @@ console.log("clearing field")
     }
     numLearned += 1
     learned.push(learnedName)
-    document.getElementById("learned-list").innerHTML = learned.join(", ").split("+").join(" ")
+    //document.getElementById("learned-list").innerHTML = learned.join(", ").split("+").join(" ")
+    document.getElementById("learned-list").appendChild(createWordElement(learnedName));
+    tick()
     names.splice(randomNumber,1)
-    latin.splice(randomNumber,1)
 
     console.log(names)
   }
