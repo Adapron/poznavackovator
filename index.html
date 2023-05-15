@@ -705,6 +705,18 @@ console.log("clearing field")
           
       }
 
+    document.addEventListener("keydown", function(event) {
+      if(testMode){return}
+      if (event.code === "Space") {
+        event.preventDefault(); // Prevent scrolling behavior
+        changePhoto();
+      }
+      if (event.code =="KeyL"){
+        event.preventDefault(); // Prevent scrolling behavior
+        learn();
+      }
+    });
+
   function learn() {
     if(waslearnedrecently){return}
     if(!change){return}
