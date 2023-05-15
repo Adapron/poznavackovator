@@ -471,8 +471,12 @@ console.log(true && true)
     shownImg = removeDiacritics(names[randomNumber].toLowerCase())
 
     console.log(shownImg)
-console.log(guessed)
+console.log("\""+guessed+"\"")
 
+if(guessed.length == 0){
+  samename()
+  return
+}
 
 
 if(guessed.split(" ").length == 1 & shownImg.split(" ").length > 1){
