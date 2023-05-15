@@ -707,6 +707,7 @@ console.log("clearing field")
 
   function learn() {
     if(waslearnedrecently){return}
+    if(!change){return}
     waslearnedrecently = true
     
     tick()
