@@ -466,6 +466,7 @@ console.log(true && true)
 
 
   function guess(){
+    
     guessed = removeDiacritics(document.getElementById("testInput").value.toLowerCase())
     shownImg = removeDiacritics(names[randomNumber].toLowerCase())
 
@@ -483,9 +484,10 @@ threshold = 2
 
     if(levDistance <= threshold){
       //good
-      learn()
+      
       //alert("you guessed correctly")
       changePhoto()
+      learn()
       changePhoto()
 
     }else{
