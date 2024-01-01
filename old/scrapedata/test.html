@@ -2,101 +2,69 @@
 <html>
   <head>
     <title>Poznávačka</title>
-    <style>
-        .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-        }
-
-        .switch input { 
-        opacity: 0;
-        width: 0;
-        height: 0;
-        }
-
-        .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-        }
-
-        .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-        }
-
-        input:checked + .slider {
-        background-color: #ff0ceb;
-        }
-
-        input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-        }
-
-        .slider.round {
-        border-radius: 34px;
-        }
-
-        .slider.round:before {
-        border-radius: 50%;
-        }
-
-    </style>
+   
   </head>
   <body>
-    <div class="switch-container">
-        <span class="option1">Option 1</span>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-        <span class="option2">Option 2</span>
-      </div>
+    <input type="text" id="searchInput" onkeyup="filterList()" onclick="showSuggestions()" placeholder="Search...">
+<ul id="suggestionsList"></ul>
 
-      <select>
-        <optgroup label="Category A">
-          <option value="a1">Option 1</option>
-          <option value="a2">Option 2</option>
-          <option value="a3">Option 3</option>
-        </optgroup>
-        <optgroup label="Category B">
-          <option value="b1">Option 1</option>
-          <option value="b2">Option 2</option>
-          <option value="b3">Option 3</option>
-        </optgroup>
-      </select>
       
       
     <script>
-        const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
-        toggleSwitch.addEventListener('change', function(event) {
-        if (event.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
-        });
+       var words = ['apple', 'pear', 'avocado', 'ananas', 'banana', 'blueberry', 'cherry', 'grapefruit', 'kiwi', 'mango'];
+
+function showSuggestions() {
+  var suggestionsList = document.getElementById('suggestionsList');
+
+  // Clear previous suggestions
+  suggestionsList.innerHTML = '';
+
+  // Show the first 10 words as suggestions
+  for (var i = 0; i < 10 && i < words.length; i++) {
+    var li = document.createElement('li');
+    li.textContent = words[i];
+    suggestionsList.appendChild(li);
+  }
+
+  suggestionsList.style.display = 'block';
+}
+
+function filterList() {
+  var input = document.getElementById('searchInput').value.toLowerCase();
+  var suggestionsList = document.getElementById('suggestionsList');
+
+  // Clear previous suggestions
+  suggestionsList.innerHTML = '';
+
+  // Filter the words based on the input
+  var filteredWords = words.filter(function(word) {
+    return word.toLowerCase().startsWith(input);
+  });
+
+  // Show the filtered words as suggestions
+  for (var i = 0; i < filteredWords.length; i++) {
+    var li = document.createElement('li');
+    li.textContent = filteredWords[i];
+    suggestionsList.appendChild(li);
+  }
+
+  if (input.length === 0) {
+    suggestionsList.style.display = 'none';
+  } else {
+    suggestionsList.style.display = 'block';
+  }
+}
+
+// Close the suggestions list when the user clicks outside the input and the list
+document.addEventListener('click', function(event) {
+  var searchInput = document.getElementById('searchInput');
+  var suggestionsList = document.getElementById('suggestionsList');
+  
+  if (event.target !== searchInput && event.target !== suggestionsList) {
+    suggestionsList.style.display = 'none';
+  }
+});
+
 
     </script>
   </body>
